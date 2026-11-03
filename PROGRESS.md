@@ -33,7 +33,7 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - [x] 15. `feat(dnd): add tap-to-add, tap-to-remove and keyboard support`
 - [x] 16. `feat(box): add size selector, full-box feedback and surprise-me`
 - [x] 17. `feat(receipt): add sliding receipt panel with totals`
-- [ ] 18. `feat(delivery): add delivery form with validation`
+- [x] 18. `feat(delivery): add delivery form with validation`
 - [ ] 19. `feat(delivery): add area fees, date picker and gift message`
 - [ ] 20. `feat(payment): add bank details panel with copy buttons`
 - [ ] 21. `feat(payment): add slip upload with preview and compression`
@@ -113,3 +113,9 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - Commit: `style: make falling snowflake shapes more visible` (local; not pushed).
 - Owner requested visible snowflake shapes instead of dots. Removed dot particles and their config, increased line-flake size/opacity, and added a second pair of branches to each of the six arms. Line width is configurable in brand.ts.
 - Build and lint pass. Chrome at 360px and 1440px confirms all particles use stroked snowflake shapes with no filled dots; saved toggle, hidden-tab pause, reduced motion, resize/DPR and cookie drag checks still pass. Mobile screenshot inspected. No push performed; Phase 3 remains on hold.
+
+## Phase 3: delivery details and gift options
+
+- Owner resumed the plan after design review. Phase 3 is now in progress; the earlier design-review hold is lifted. All snowfall commits through ad26bd0 were pushed before this phase.
+- Commit 18: full name, Sri Lankan WhatsApp/phone and address fields; inline errors on blur/submit with focus on the first invalid field. Details and box data share one in-memory store and survive Back/Next navigation. Builder Next requires a full box. A simple next-step placeholder is shown after validation; no payment fields or backend are implemented.
+- Commit 18 checks: build, lint and five unit tests pass. Chrome at 360px/1440px verifies empty/invalid blocking, first-error focus, valid progression, preserved details/box on Back, persistent canvas and no overflow or browser exceptions.

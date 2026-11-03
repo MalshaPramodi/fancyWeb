@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .form-control {
+    @apply block min-h-11 w-full min-w-0 rounded-button border border-line bg-ivory px-3 py-3 text-base font-normal text-ink transition-colors duration-gentle placeholder:text-muted focus:border-gold disabled:bg-cream disabled:text-muted;
+  }
+  .form-control[aria-invalid='true'] {
+    @apply border-burgundy;
+  }
+}
+
 @layer base {
   :root {
     font-family: theme('fontFamily.body');

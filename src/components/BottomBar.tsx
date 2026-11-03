@@ -8,6 +8,7 @@ type BottomBarProps = {
   onNext?: () => void
   canGoBack?: boolean
   canGoNext?: boolean
+  nextForm?: string
 }
 
 export function BottomBar({
@@ -18,6 +19,7 @@ export function BottomBar({
   onNext,
   canGoBack = false,
   canGoNext = false,
+  nextForm,
 }: BottomBarProps) {
   return (
     <aside
@@ -45,7 +47,8 @@ export function BottomBar({
             Back
           </button>
           <button
-            type="button"
+            type={nextForm ? 'submit' : 'button'}
+            form={nextForm}
             onClick={onNext}
             disabled={!canGoNext}
             aria-describedby={!canGoNext ? 'next-step-help' : undefined}

@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "test": "node --experimental-strip-types --test src/store/box.test.ts",
+    "test": "node --experimental-strip-types --test src/store/box.test.ts src/lib/delivery.test.ts",
     "dev": "vite",
     "build": "node scripts/generate-placeholders.mjs && tsc -b && vite build",
     "lint": "eslint . --max-warnings 0",
