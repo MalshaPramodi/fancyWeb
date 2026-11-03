@@ -31,7 +31,7 @@ The reference video "Fancy_Webs.mp4" informs the **build-your-own-box interactio
 - Receipt and checkout retain a clear item summary, total and a centred card with a few fields and one clear button.
 - Copy is **short and warm, with no exclamation marks or emojis**. Keep text easy to translate into Sinhala and Tamil later.
 
-This is a visual revision only. Do not start Phase 3 or change ordering behaviour as part of this revision.
+The design revision preserves ordering behaviour. The owner has resumed implementation after UI review; apply this design direction while following the remaining phases in order.
 
 ## 3. Tech stack (all free)
 

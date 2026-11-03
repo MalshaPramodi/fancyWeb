@@ -6,10 +6,11 @@ See [PROGRESS.md](PROGRESS.md) for the phase and commit checklist.
 
 ## Current scope
 
-Phases 0–1 are complete: project setup, Christmas theme, layout, effects,
-stepper, mobile summary and labelled SVG placeholders. The shell currently uses
-a mock empty box and an explicitly unavailable price; checkout is disabled.
-Phases 2–4 will use mock data and clearly marked placeholder images only.
+Phases 0–3 are complete: setup, elegant Christmas theme, cookie box builder,
+snowfall, mobile summary and validated delivery details with gift options.
+The preview uses labelled placeholder images, LKR 0 prices/fees and example
+December dates. Next requires a full box and valid delivery details. Payment
+currently shows a placeholder; payment and confirmation are Phase 4.
 Backend work starts only after the owner's Phase 4 design approval.
 The agent must stop after commit 25 for review.
 
@@ -17,7 +18,7 @@ The owner chose to retain the existing `MalshaPramodi/fancyWeb` GitHub repositor
 
 The current design is elegant and modern: Cormorant Garamond headlines, Inter
 body text, evergreen and ivory, antique gold details and a burgundy accent.
-Section 2 of the plan defines the visual direction. Phase 3 is on hold for UI review.
+Section 2 of the plan defines the visual direction. Phase 3 resumed after UI review.
 
 Site-wide canvas snowfall is configured in `src/config/brand.ts` under `snowfall`.
 Its colour and density feed Tailwind theme tokens. The shared layout mounts it once,
@@ -39,6 +40,7 @@ Vite prints the local development URL (normally http://localhost:5173).
 ```sh
 npm run build        # strict TypeScript check and static build into dist/
 npm run lint         # ESLint, zero warnings
+npm test             # box state, phones, delivery schedule and gift validation
 npm run format:check # Prettier check
 npm run format       # apply formatting
 npm run preview      # serve the production build locally
@@ -74,6 +76,13 @@ All business content must live in the four config files listed above when those
 features are introduced. Prices, delivery dates and fees, bank details, WhatsApp
 number and real photos are still needed. Use labelled placeholders; do not invent
 real values. Currency is LKR and business timezone is Asia/Colombo.
+
+`src/config/delivery.ts` marks fees and dates with `isPlaceholder: true`. Its
+example delivery dates are 20–22 December 2026 and its example order deadline is
+18 December 2026; these are demo values, not confirmed availability. Validation
+enforces the configured dates and deadline in Asia/Colombo, including on submit.
+The gift-message limit is configurable. Checkout details stay in memory while
+navigating and reset on a page reload; only the snow preference uses localStorage.
 
 `.env.example` documents the later `VITE_ORDER_API_URL` setting. It stays empty
 through Phase 4. Never commit secrets. Vite's `VITE_` variables are public browser

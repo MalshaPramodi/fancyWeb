@@ -3,17 +3,19 @@ import { brand } from './config/brand'
 import { Stepper } from './components/Stepper'
 import { BottomBar } from './components/BottomBar'
 import { BuildBox } from './steps/BuildBox'
-import { useBoxStore } from './store/useBoxStore'
+import { useBoxStore, useDeliveryStore } from './store/useBoxStore'
 import { boxCount, boxTotal } from './store/box'
 import { useState } from 'react'
 import { Delivery } from './steps/Delivery'
 import { deliveryConfig } from './config/delivery'
 import { Receipt } from './components/Receipt'
+import { getDeliveryFee } from './lib/delivery'
 
 type Step = 0 | 1 | 2
 
 function App() {
   const box = useBoxStore()
+  const delivery = useDeliveryStore()
   const [step, setStep] = useState<Step>(0)
   const full = boxCount(box) === box.size
   const navigate = (next: Step) => {
@@ -106,7 +108,7 @@ function App() {
       <BottomBar
         count={boxCount(box)}
         capacity={box.size}
-        total={boxTotal(box)}
+        total={boxTotal(box, getDeliveryFee(delivery.areaId))}
         canGoBack={step > 0}
         canGoNext={step === 0 ? full : step === 1}
         onBack={() => navigate(step === 2 ? 1 : 0)}

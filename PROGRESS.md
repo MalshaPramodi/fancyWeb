@@ -8,7 +8,7 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - [x] Phase 0: Setup (complete)
 - [x] Phase 1: Design system and layout shell
 - [x] Phase 2: Box builder
-- [ ] Phase 3: Delivery details and gift options
+- [x] Phase 3: Delivery details and gift options
 - [ ] Phase 4: Payment, slip upload and confirmation — STOP after commit 25
 - [ ] Phase 5: Backend integration — requires design approval
 - [ ] Phase 6: Production hardening
@@ -34,7 +34,7 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - [x] 16. `feat(box): add size selector, full-box feedback and surprise-me`
 - [x] 17. `feat(receipt): add sliding receipt panel with totals`
 - [x] 18. `feat(delivery): add delivery form with validation`
-- [ ] 19. `feat(delivery): add area fees, date picker and gift message`
+- [x] 19. `feat(delivery): add area fees, date picker and gift message`
 - [ ] 20. `feat(payment): add bank details panel with copy buttons`
 - [ ] 21. `feat(payment): add slip upload with preview and compression`
 - [ ] 22. `feat(confirm): add confirmation screen with closing-box animation`
@@ -119,3 +119,6 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - Owner resumed the plan after design review. Phase 3 is now in progress; the earlier design-review hold is lifted. All snowfall commits through ad26bd0 were pushed before this phase.
 - Commit 18: full name, Sri Lankan WhatsApp/phone and address fields; inline errors on blur/submit with focus on the first invalid field. Details and box data share one in-memory store and survive Back/Next navigation. Builder Next requires a full box. A simple next-step placeholder is shown after validation; no payment fields or backend are implemented.
 - Commit 18 checks: build, lint and five unit tests pass. Chrome at 360px/1440px verifies empty/invalid blocking, first-error focus, valid progression, preserved details/box on Back, persistent canvas and no overflow or browser exceptions.
+- Commit 19: configured area fees, example-date picker with schedule/deadline checks in Asia/Colombo, optional gift note with 200-character limit and gift toggle. Self pickup does not require an address. Shared receipt and bottom total use the selected fee, including when returning to the builder. All fees and dates are clearly marked placeholders in config and UI.
+- Phase 3 checks: build, lint, formatting and nine unit tests pass, including the midnight Colombo deadline boundary. Chrome at 360px/1440px verifies required errors, first-error focus, phone formats, schedule bounds, expired deadline at submit, pickup address rules, gift character cap and retained details across Back/Next. Snow canvas persists across steps, no horizontal overflow or browser exceptions, and customer details are not written to localStorage. Mobile/desktop screenshots inspected.
+- Phase 3 is complete. Next: Phase 4 payment, slip upload and mocked confirmation (commits 20–25), then the required design-review STOP. No backend work has started.

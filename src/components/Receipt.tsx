@@ -1,10 +1,14 @@
 import { products, productConfig } from '../config/products'
-import { useBoxStore } from '../store/useBoxStore'
+import { useBoxStore, useDeliveryStore } from '../store/useBoxStore'
 import { boxCount, boxTotal } from '../store/box'
 import { formatLkr } from '../lib/format'
+import { getDeliveryFee } from '../lib/delivery'
+import { deliveryConfig } from '../config/delivery'
 
-export function Receipt({ deliveryFee = 0 }: { deliveryFee?: number }) {
+export function Receipt({ deliveryFee }: { deliveryFee?: number }) {
   const box = useBoxStore()
+  const delivery = useDeliveryStore()
+  const fee = deliveryFee ?? getDeliveryFee(delivery.areaId)
   return (
     <aside
       aria-label="Your box receipt"
@@ -35,11 +39,15 @@ export function Receipt({ deliveryFee = 0 }: { deliveryFee?: number }) {
         </div>
         <div className="flex justify-between gap-3">
           <dt>Delivery</dt>
-          <dd>{formatLkr(deliveryFee)}</dd>
+          <dd>
+            {delivery.areaId || deliveryFee !== undefined
+              ? formatLkr(fee)
+              : deliveryConfig.copy.areaPrompt}
+          </dd>
         </div>
         <div className="flex justify-between gap-3 border-t border-evergreen/20 pt-3 font-normal">
           <dt>Total</dt>
-          <dd>{formatLkr(boxTotal(box, deliveryFee))}</dd>
+          <dd>{formatLkr(boxTotal(box, fee))}</dd>
         </div>
       </dl>
       <p className="mt-3 text-xs font-normal text-burgundy">
