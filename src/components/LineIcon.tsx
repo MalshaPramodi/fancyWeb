@@ -1,5 +1,6 @@
-type IconName = 'snow' | 'shuffle' | 'arrow' | 'plus' | 'ribbon'
+type IconName = 'snow' | 'shuffle' | 'arrow' | 'plus' | 'ribbon' | 'copy'
 const paths: Record<IconName, string> = {
+  copy: 'M8 8h12v13H8ZM16 8V3H4v13h4',
   snow: 'M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9M9 5l3 3 3-3M9 19l3-3 3 3',
   shuffle:
     'M3 6h3c5 0 7 12 12 12h3m-4-4 4 4-4 4M3 18h3c2 0 3-2 5-5m2-2c2-3 3-5 5-5h3m-4-4 4 4-4 4',

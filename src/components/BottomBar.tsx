@@ -9,6 +9,8 @@ type BottomBarProps = {
   canGoBack?: boolean
   canGoNext?: boolean
   nextForm?: string
+  nextLabel?: string
+  busy?: boolean
 }
 
 export function BottomBar({
@@ -20,6 +22,8 @@ export function BottomBar({
   canGoBack = false,
   canGoNext = false,
   nextForm,
+  nextLabel = 'Next',
+  busy = false,
 }: BottomBarProps) {
   return (
     <aside
@@ -49,12 +53,13 @@ export function BottomBar({
           <button
             type={nextForm ? 'submit' : 'button'}
             form={nextForm}
+            aria-busy={busy}
             onClick={onNext}
             disabled={!canGoNext}
             aria-describedby={!canGoNext ? 'next-step-help' : undefined}
             className="inline-flex min-h-11 items-center gap-2 rounded-button border border-evergreen bg-evergreen px-4 text-sm font-normal text-ivory disabled:opacity-40 sm:px-6"
           >
-            Next <LineIcon name="arrow" />
+            {nextLabel} <LineIcon name="arrow" />
           </button>
         </div>
       </div>

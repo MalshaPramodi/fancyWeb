@@ -3,42 +3,104 @@ import { brand } from './config/brand'
 import { Stepper } from './components/Stepper'
 import { BottomBar } from './components/BottomBar'
 import { BuildBox } from './steps/BuildBox'
-import { useBoxStore, useDeliveryStore } from './store/useBoxStore'
+import {
+  useBoxStore,
+  useDeliveryStore,
+  usePaymentStore,
+  useConfirmationStore,
+  getOrderSnapshot,
+  completeMockOrder,
+  resetOrder,
+  updatePayment,
+} from './store/useBoxStore'
 import { boxCount, boxTotal } from './store/box'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Delivery } from './steps/Delivery'
 import { deliveryConfig } from './config/delivery'
-import { Receipt } from './components/Receipt'
-import { getDeliveryFee } from './lib/delivery'
+import { Payment } from './steps/Payment'
+import { paymentConfig } from './config/payment'
+import { getDeliveryFee, validateDelivery } from './lib/delivery'
+import { Done } from './steps/Done'
+import { submitMockOrder } from './lib/mockOrder'
 
-type Step = 0 | 1 | 2
+type Step = 0 | 1 | 2 | 3
 
 function App() {
   const box = useBoxStore()
   const delivery = useDeliveryStore()
+  const payment = usePaymentStore()
+  const order = useConfirmationStore()
+  const [submitting, setSubmitting] = useState(false)
+  const [submissionError, setSubmissionError] = useState('')
+  const [deliveryReview, setDeliveryReview] = useState(false)
+  const submissionLock = useRef(false)
   const [step, setStep] = useState<Step>(0)
   const full = boxCount(box) === box.size
-  const navigate = (next: Step) => {
+  const navigate = (next: Step, focusId = 'builder-title') => {
     setStep(next)
     requestAnimationFrame(() => {
       document.getElementById('builder-title')?.focus({ preventScroll: true })
       document
         .querySelector('[aria-label="Order progress"]')
         ?.scrollIntoView({ block: 'start' })
+      if (focusId !== 'builder-title') document.getElementById(focusId)?.focus()
     })
+  }
+  const confirm = async () => {
+    if (submissionLock.current) return
+    const current = getOrderSnapshot()
+    if (boxCount(current.box) !== current.box.size) {
+      navigate(0)
+      return
+    }
+    const invalid = Object.keys(validateDelivery(current.delivery))[0]
+    if (invalid) {
+      updatePayment({ confirmed: false })
+      setDeliveryReview(true)
+      navigate(1, `delivery-${invalid}`)
+      return
+    }
+    if (
+      !current.payment.slip ||
+      !current.payment.confirmed ||
+      current.payment.preparing
+    )
+      return
+    submissionLock.current = true
+    setSubmitting(true)
+    setSubmissionError('')
+    try {
+      completeMockOrder(await submitMockOrder())
+      navigate(3)
+    } catch {
+      setSubmissionError(paymentConfig.errors.submission)
+    } finally {
+      submissionLock.current = false
+      setSubmitting(false)
+    }
+  }
+  const orderAgain = () => {
+    resetOrder()
+    setDeliveryReview(false)
+    setSubmissionError('')
+    navigate(0)
   }
   const title =
     step === 0
       ? brand.builderTitle
       : step === 1
         ? deliveryConfig.title
-        : deliveryConfig.copy.reviewTitle
+        : step === 2
+          ? paymentConfig.title
+          : paymentConfig.done.title
   const description =
     step === 0
       ? brand.builderDescription
       : step === 1
         ? deliveryConfig.description
-        : deliveryConfig.copy.reviewDescription
+        : step === 2
+          ? paymentConfig.description
+          : paymentConfig.done.description
   return (
     <PageShell>
       {step === 0 && (
@@ -88,39 +150,61 @@ function App() {
         {step === 0 && <BuildBox />}
         {step === 1 && (
           <Delivery
+            showErrors={deliveryReview}
             onContinue={() => {
-              if (full) navigate(2)
+              if (full) {
+                setDeliveryReview(false)
+                navigate(2)
+              }
             }}
           />
         )}
         {step === 2 && (
-          <div className="mx-auto max-w-lg">
-            <Receipt />
-            <p id="next-step-help" className="mt-6 text-sm text-muted">
-              {deliveryConfig.copy.reviewDescription}
-            </p>
-          </div>
+          <Payment
+            onConfirm={() => void confirm()}
+            submitting={submitting}
+            error={submissionError}
+          />
+        )}
+        {step === 3 && order && (
+          <Done order={order} onOrderAgain={orderAgain} />
         )}
       </section>
       <p className="mt-5 text-center text-xs text-muted">
         {brand.previewLabel}
       </p>
-      <BottomBar
-        count={boxCount(box)}
-        capacity={box.size}
-        total={boxTotal(box, getDeliveryFee(delivery.areaId))}
-        canGoBack={step > 0}
-        canGoNext={step === 0 ? full : step === 1}
-        onBack={() => navigate(step === 2 ? 1 : 0)}
-        onNext={
-          step === 0
-            ? () => {
-                if (full) navigate(1)
-              }
-            : undefined
-        }
-        nextForm={step === 1 ? 'delivery-form' : undefined}
-      />
+      {step < 3 && (
+        <BottomBar
+          count={boxCount(box)}
+          capacity={box.size}
+          total={boxTotal(box, getDeliveryFee(delivery.areaId))}
+          canGoBack={step > 0 && !submitting}
+          canGoNext={step === 0 ? full : !submitting && !payment.preparing}
+          busy={submitting}
+          nextLabel={
+            step === 2
+              ? submitting
+                ? paymentConfig.copy.confirming
+                : paymentConfig.copy.confirm
+              : 'Next'
+          }
+          onBack={() => navigate(step === 2 ? 1 : 0)}
+          onNext={
+            step === 0
+              ? () => {
+                  if (full) navigate(1)
+                }
+              : undefined
+          }
+          nextForm={
+            step === 1
+              ? 'delivery-form'
+              : step === 2
+                ? 'payment-form'
+                : undefined
+          }
+        />
+      )}
     </PageShell>
   )
 }

@@ -7,6 +7,7 @@ import { boxCount } from '../store/box'
 import { useState } from 'react'
 import { Receipt } from '../components/Receipt'
 import { LineIcon } from '../components/LineIcon'
+import { brand } from '../config/brand'
 
 export function BuildBox() {
   const box = useBoxStore()
@@ -62,7 +63,6 @@ export function BuildBox() {
           <CookieTray box={box} onAdd={add} />
         </div>
         <div
-          key={fullFeedback}
           className={`order-1 lg:order-2 ${fullFeedback > 0 ? 'box-full-feedback' : ''}`}
         >
           <Box box={box} />
@@ -79,7 +79,7 @@ export function BuildBox() {
       </p>
       <p role="status" className="mt-2 text-center text-sm font-normal">
         {count === box.size
-          ? 'Your box is full. Remove a cookie to make room.'
+          ? brand.packaging.ready
           : `${count} of ${box.size} cookies packed.`}
       </p>
     </div>

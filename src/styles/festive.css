@@ -61,3 +61,53 @@
     visibility: hidden;
   }
 }
+.closing-box-lid {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: close-box 1300ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+@keyframes close-box {
+  from {
+    opacity: 0.4;
+    transform: translateY(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cookies-packing {
+  animation: gather-cookies 650ms ease-in-out both;
+}
+.builder-gift-lid {
+  transform-origin: center top;
+  animation: wrap-cookie-box 1600ms cubic-bezier(0.22, 0.61, 0.36, 1) 650ms both;
+}
+.gift-ribbon,
+.gift-label {
+  animation: gift-finish 1100ms ease-out 1900ms both;
+}
+@keyframes gather-cookies {
+  to {
+    transform: scale(0.96);
+  }
+}
+@keyframes wrap-cookie-box {
+  from {
+    opacity: 0;
+    transform: perspective(900px) rotateX(-75deg) translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(900px) rotateX(0) translateY(0);
+  }
+}
+@keyframes gift-finish {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

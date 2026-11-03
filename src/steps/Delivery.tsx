@@ -14,9 +14,15 @@ import {
 import { formatLkr } from '../lib/format'
 import type { DeliveryDetails } from '../store/order'
 
-export function Delivery({ onContinue }: { onContinue: () => void }) {
+export function Delivery({
+  onContinue,
+  showErrors = false,
+}: {
+  onContinue: () => void
+  showErrors?: boolean
+}) {
   const details = useDeliveryStore()
-  const [attempt, setAttempt] = useState(0)
+  const [attempt, setAttempt] = useState(showErrors ? 1 : 0)
   const attempted = attempt > 0
   const pickup = getDeliveryArea(details.areaId)?.pickup ?? false
   const dates = availableDeliveryDates()

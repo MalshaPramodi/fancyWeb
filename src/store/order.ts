@@ -16,3 +16,17 @@ export const initialDelivery = (): DeliveryDetails => ({
   isGift: false,
   giftMessage: '',
 })
+
+export type PaymentDetails = {
+  slip: File | null
+  previewUrl: string | null
+  confirmed: boolean
+  preparing: boolean
+}
+export const initialPayment = (): PaymentDetails => ({
+  slip: null,
+  previewUrl: null,
+  confirmed: false,
+  preparing: false,
+})
+export type OrderConfirmation = { id: string; createdAt: string }
