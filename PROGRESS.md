@@ -28,7 +28,7 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - [x] 10. `feat(config): add products, box sizes and pricing config`
 - [x] 11. `feat(state): add box store with unit tests`
 - [x] 12. `feat(box): render gift box with slots`
-- [ ] 13. `feat(trays): add cookie trays with count badges`
+- [x] 13. `feat(trays): add cookie trays with count badges`
 - [ ] 14. `feat(dnd): add pointer-based drag and drop with ghost element`
 - [ ] 15. `feat(dnd): add tap-to-add, tap-to-remove and keyboard support`
 - [ ] 16. `feat(box): add size selector, full-box feedback and surprise-me`
@@ -75,5 +75,6 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - Commit 10: six configured placeholder flavours and images, 6/9/12 sizes, explicitly labelled LKR 0 mock prices, and shared LKR formatting. Real prices remain unknown.
 - Commit 11: single observable React box store, immutable reducer, add/remove/resize/reset and totals. Node unit tests cover overflow, holes, retained slots and all size totals with fees.
 - Commit 12: responsive gift box with numbered empty-slot labels, cookie previews and packed count, driven by the store.
+- Commit 13: six responsive cookie trays with configured image/name and live per-flavour count badges.
 - Dependency audit: 13 moderate reports trace to a minimatch denial-of-service advisory in development lint tooling; no high or critical reports. Review compatible upstream fixes during hardening. No forced major dependency overrides were applied.
 - No backend work is authorized before the Phase 4 design review.
