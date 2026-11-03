@@ -1,0 +1,61 @@
+# Fancytastic progress
+
+Source of truth: [FANCYTASTIC_AGENT_PLAN.md](FANCYTASTIC_AGENT_PLAN.md).
+Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new repository.
+
+## Phases
+
+- [ ] Phase 0: Setup (in progress)
+- [ ] Phase 1: Design system and layout shell
+- [ ] Phase 2: Box builder
+- [ ] Phase 3: Delivery details and gift options
+- [ ] Phase 4: Payment, slip upload and confirmation — STOP after commit 25
+- [ ] Phase 5: Backend integration — requires design approval
+- [ ] Phase 6: Production hardening
+- [ ] Phase 7: Launch and handover
+
+## Commits
+
+- [x] 1. `chore: scaffold Vite React TypeScript project`
+- [ ] 2. `chore: add Tailwind, ESLint, Prettier`
+- [ ] 3. `docs: add README and project structure`
+- [ ] 4. `ci: connect Cloudflare Pages deployment`
+- [ ] 5. `feat(theme): add Christmas design tokens and fonts`
+- [ ] 6. `feat(layout): add header, footer and page shell`
+- [ ] 7. `feat(fx): add snowfall and twinkling lights with reduced-motion support`
+- [ ] 8. `feat(nav): add stepper and sticky bottom bar`
+- [ ] 9. `chore(assets): add placeholder images and brand config`
+- [ ] 10. `feat(config): add products, box sizes and pricing config`
+- [ ] 11. `feat(state): add box store with unit tests`
+- [ ] 12. `feat(box): render gift box with slots`
+- [ ] 13. `feat(trays): add cookie trays with count badges`
+- [ ] 14. `feat(dnd): add pointer-based drag and drop with ghost element`
+- [ ] 15. `feat(dnd): add tap-to-add, tap-to-remove and keyboard support`
+- [ ] 16. `feat(box): add size selector, full-box feedback and surprise-me`
+- [ ] 17. `feat(receipt): add sliding receipt panel with totals`
+- [ ] 18. `feat(delivery): add delivery form with validation`
+- [ ] 19. `feat(delivery): add area fees, date picker and gift message`
+- [ ] 20. `feat(payment): add bank details panel with copy buttons`
+- [ ] 21. `feat(payment): add slip upload with preview and compression`
+- [ ] 22. `feat(confirm): add confirmation screen with closing-box animation`
+- [ ] 23. `feat(confirm): add WhatsApp prefilled message button`
+- [ ] 24. `feat(order): add mocked order submission`
+- [ ] 25. `docs: add preview notes for owner review` — STOP
+- [ ] 26. `feat(api): add Apps Script order endpoint and Sheet schema`
+- [ ] 27. `feat(api): save payment slips to Drive`
+- [ ] 28. `feat(api): send owner notification email`
+- [ ] 29. `feat(order): connect frontend to API with retry and fallback`
+- [ ] 30. `docs: add backend setup guide`
+- [ ] 31. `fix(a11y): improve focus, contrast and labels`
+- [ ] 32. `perf: optimise images and lazy load`
+- [ ] 33. `feat(seo): add meta tags and Open Graph image`
+- [ ] 34. `feat(security): add honeypot and double-submit protection`
+- [ ] 35. `feat(ui): add ordering-closed banner from config`
+- [ ] 36. `docs: add owner guide`
+- [ ] 37. `chore(release): v1.0.0`
+
+## Verification and remaining work
+
+- Commit 1: Vite React TypeScript scaffold; build and scaffold lint checked before commit.
+- Cloudflare Pages connection and live URL are pending account access.
+- No backend work is authorized before the Phase 4 design review.
