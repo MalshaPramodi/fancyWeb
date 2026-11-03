@@ -22,7 +22,7 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - [x] 4. `ci: connect Cloudflare Pages deployment`
 - [x] 5. `feat(theme): add Christmas design tokens and fonts`
 - [x] 6. `feat(layout): add header, footer and page shell`
-- [ ] 7. `feat(fx): add snowfall and twinkling lights with reduced-motion support`
+- [x] 7. `feat(fx): add snowfall and twinkling lights with reduced-motion support`
 - [ ] 8. `feat(nav): add stepper and sticky bottom bar`
 - [ ] 9. `chore(assets): add placeholder images and brand config`
 - [ ] 10. `feat(config): add products, box sizes and pricing config`
@@ -67,5 +67,6 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - All four planned Phase 0 commits are pushed to `main`. Post-deployment documentation updates will be included in the next planned commit to preserve the numbered commit sequence without rewriting published history.
 - Phase 1 underway. Commit 5: pine, holly, gold and snow tokens, display/body font stacks, chunky shadows, accessible focus styles and Google Fonts with swap and system fallbacks. Phase 0 verification notes included without an extra commit.
 - Commit 6: responsive header, central preview surface, candy-cane divider, footer and skip link. Business copy is in the initial brand config; image paths follow in commit 9. No ordering interactions are enabled yet.
+- Commit 7: lightweight CSS snowfall and light string, accessible toggle, live reduced-motion preference handling and CSS safeguard. Reduced motion suppresses snow and light animation.
 - Dependency audit: 13 moderate reports trace to a minimatch denial-of-service advisory in development lint tooling; no high or critical reports. Review compatible upstream fixes during hardening. No forced major dependency overrides were applied.
 - No backend work is authorized before the Phase 4 design review.

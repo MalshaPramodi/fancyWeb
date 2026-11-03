@@ -1,8 +1,11 @@
 import type { ReactNode } from 'react'
+import { useState } from 'react'
 import { Header } from './Header'
 import { Footer } from './Footer'
+import { FestiveEffects } from './FestiveEffects'
 
 export function PageShell({ children }: { children: ReactNode }) {
+  const [effectsEnabled, setEffectsEnabled] = useState(true)
   return (
     <div className="min-h-svh">
       <a
@@ -12,6 +15,12 @@ export function PageShell({ children }: { children: ReactNode }) {
         Skip to content
       </a>
       <Header />
+      <div className="relative">
+        <FestiveEffects
+          enabled={effectsEnabled}
+          onToggle={() => setEffectsEnabled((enabled) => !enabled)}
+        />
+      </div>
       <main id="main" tabIndex={-1} className="mx-auto max-w-6xl px-5 sm:px-8">
         {children}
       </main>
