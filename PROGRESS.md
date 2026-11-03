@@ -93,3 +93,9 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - Functionality preserved. Store unit tests, build and lint pass. Chrome at 360px and 1440px verifies drag, tap, keyboard, size preservation, Surprise me, full-box limits, effects toggle, reduced motion, loaded images and no overflow. Touch tap also verified. Screenshots inspected; browser reports no exceptions and no borders thicker than 1px.
 - Commit: `style: switch to elegant modern design direction` (owner-authorized visual revision).
 - Phase 3 remains on hold pending the owner's further instructions.
+
+## Snowfall refinement
+
+- Replaced tiny snow dots with 18 fine line snowflakes, varied sizes and staggered slow top-to-bottom movement. Colours still come from the theme.
+- Retained the effects toggle, reduced-motion suppression and pointer-transparent overlay. Phase 3 remains on hold.
+- Verified build and lint, downward movement and flake silhouettes in Chrome at 360px and 1440px, effects toggle and reduced motion. Existing builder interactions remain functional; no overflow or browser exceptions.

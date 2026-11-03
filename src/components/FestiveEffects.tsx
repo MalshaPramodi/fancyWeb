@@ -41,12 +41,20 @@ export function FestiveEffects({
         </div>
         {enabled && !reducedMotion && (
           <div className="snowfall">
-            {Array.from({ length: 12 }, (_, i) => (
+            {Array.from({ length: 18 }, (_, i) => (
               <span
                 className="snowflake"
                 key={i}
-                style={{ '--i': i } as CSSProperties}
-              />
+                style={
+                  {
+                    '--i': i,
+                    '--size': `${10 + (i % 4) * 3}px`,
+                    '--duration': `${24 + (i % 5) * 3}s`,
+                  } as CSSProperties
+                }
+              >
+                <LineIcon name="snow" className="size-full" />
+              </span>
             ))}
           </div>
         )}
