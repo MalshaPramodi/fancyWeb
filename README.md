@@ -1,32 +1,69 @@
-# React + TypeScript + Vite
+# Fancytastic Christmas Cookie Box
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A mobile-first Christmas cookie box ordering website for Fancytastic, Sri Lanka.
+The project follows [FANCYTASTIC_AGENT_PLAN.md](FANCYTASTIC_AGENT_PLAN.md).
+See [PROGRESS.md](PROGRESS.md) for the phase and commit checklist.
 
-Currently, two official plugins are available:
+## Current scope
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Phase 0 setup. Phases 1–4 will use mock data and clearly marked placeholder
+images only. Backend work starts only after the owner's Phase 4 design approval.
+The agent must stop after commit 25 for review.
 
-## React Compiler
+The owner chose to retain the existing `MalshaPramodi/fancyWeb` GitHub repository.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Local development
 
-## Expanding the Oxlint configuration
+Use Node.js 24 (see `.node-version`) and npm. From the repository root:
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```sh
+npm ci
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+On Windows PowerShell, use `npm.cmd` if script execution policy blocks `npm.ps1`.
+Vite prints the local development URL (normally http://localhost:5173).
+
+```sh
+npm run build        # strict TypeScript check and static build into dist/
+npm run lint         # ESLint, zero warnings
+npm run format:check # Prettier check
+npm run format       # apply formatting
+npm run preview      # serve the production build locally
+```
+
+The stack is React, Vite, TypeScript, Tailwind CSS 3, ESLint and Prettier.
+Tailwind 3 keeps theme tokens in `tailwind.config.js`, as the plan specifies.
+TypeScript 5.9 is pinned within the ESLint TypeScript parser's supported range.
+
+## Structure
+
+```text
+public/placeholders/  Labelled image placeholders, added in Phase 1
+src/components/       Shared UI components
+src/steps/            BuildBox, Delivery, Payment and Done steps
+src/store/            Box and order state
+src/config/           brand.ts, products.ts, delivery.ts, payment.ts (later phases)
+src/lib/              Formatting, validation and upload helpers
+src/styles/           Shared styles and animation rules
+docs/                 Deployment and later owner documentation
+```
+
+Empty directories are tracked with `.gitkeep` files. No backend is implemented.
+
+## Business content and environment
+
+All business content must live in the four config files listed above when those
+features are introduced. Prices, delivery dates and fees, bank details, WhatsApp
+number and real photos are still needed. Use labelled placeholders; do not invent
+real values. Currency is LKR and business timezone is Asia/Colombo.
+
+`.env.example` documents the later `VITE_ORDER_API_URL` setting. It stays empty
+through Phase 4. Never commit secrets. Vite's `VITE_` variables are public browser
+configuration, not a place to store credentials.
+
+## Cloudflare Pages
+
+Follow [docs/deployment.md](docs/deployment.md) to connect this repository.
+Deployment remains pending until the Cloudflare connection and live URL are
+verified. A local preview does not establish the required hosted deployment.

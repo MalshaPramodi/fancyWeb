@@ -18,7 +18,7 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 
 - [x] 1. `chore: scaffold Vite React TypeScript project`
 - [x] 2. `chore: add Tailwind, ESLint, Prettier`
-- [ ] 3. `docs: add README and project structure`
+- [x] 3. `docs: add README and project structure`
 - [ ] 4. `ci: connect Cloudflare Pages deployment`
 - [ ] 5. `feat(theme): add Christmas design tokens and fonts`
 - [ ] 6. `feat(layout): add header, footer and page shell`
@@ -59,4 +59,7 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - Commit 1: Vite React TypeScript scaffold; build and scaffold lint checked before commit.
 - Commit 2: Tailwind 3 (config-based tokens), ESLint, Prettier and strict TypeScript. TypeScript 5.9 satisfies the ESLint parser's peer dependency range. Build, lint and format check verified before commit.
 - Cloudflare Pages connection and live URL are pending account access.
+- Commit 3: documented local setup, planned folders, environment placeholder and Cloudflare connection settings; replaced the Vite demo with a neutral setup preview. Build, lint, format and HTTP smoke checks verified before commit. Browser-based 360px inspection is unavailable in this session.
+- Next: verify the Cloudflare Git integration, record its live URL, then make commit 4. Phase 1 has not started.
+- Dependency audit: 13 moderate reports trace to a minimatch denial-of-service advisory in development lint tooling; no high or critical reports. Review compatible upstream fixes during hardening. No forced major dependency overrides were applied.
 - No backend work is authorized before the Phase 4 design review.
