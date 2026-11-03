@@ -1,74 +1,22 @@
-import { useSyncExternalStore } from 'react'
 import type { CSSProperties } from 'react'
 import '../styles/festive.css'
-import { LineIcon } from './LineIcon'
 
-const motionQuery = '(prefers-reduced-motion: reduce)'
-const subscribe = (callback: () => void) => {
-  const query = window.matchMedia(motionQuery)
-  query.addEventListener('change', callback)
-  return () => query.removeEventListener('change', callback)
-}
-const getReducedMotion = () => window.matchMedia(motionQuery).matches
-
-export function FestiveEffects({
-  enabled,
-  onToggle,
-}: {
-  enabled: boolean
-  onToggle: () => void
-}) {
-  const reducedMotion = useSyncExternalStore(
-    subscribe,
-    getReducedMotion,
-    () => true,
-  )
+export function FestiveEffects({ enabled }: { enabled: boolean }) {
   return (
-    <>
-      <div
-        className="festive-effects"
-        data-animated={enabled && !reducedMotion}
-        aria-hidden="true"
-      >
-        <div className="light-string">
-          {Array.from({ length: 20 }, (_, i) => (
-            <span
-              className="bulb"
-              key={i}
-              style={{ '--i': i } as CSSProperties}
-            />
-          ))}
-        </div>
-        {enabled && !reducedMotion && (
-          <div className="snowfall">
-            {Array.from({ length: 18 }, (_, i) => (
-              <span
-                className="snowflake"
-                key={i}
-                style={
-                  {
-                    '--i': i,
-                    '--size': `${10 + (i % 4) * 3}px`,
-                    '--duration': `${24 + (i % 5) * 3}s`,
-                  } as CSSProperties
-                }
-              >
-                <LineIcon name="snow" className="size-full" />
-              </span>
-            ))}
-          </div>
-        )}
+    <div
+      className="festive-effects absolute inset-x-0 bottom-0"
+      data-animated={enabled}
+      aria-hidden="true"
+    >
+      <div className="light-string">
+        {Array.from({ length: 20 }, (_, i) => (
+          <span
+            className="bulb"
+            key={i}
+            style={{ '--i': i } as CSSProperties}
+          />
+        ))}
       </div>
-      <div className="mx-auto flex max-w-6xl justify-end px-5 pt-7 sm:px-8">
-        <button
-          type="button"
-          aria-pressed={enabled}
-          onClick={onToggle}
-          className="inline-flex min-h-11 items-center gap-2 rounded-button border border-line bg-ivory px-3 text-[11px] font-normal text-muted hover:border-gold"
-        >
-          <LineIcon name="snow" /> Snow & lights: {enabled ? 'on' : 'off'}
-        </button>
-      </div>
-    </>
+    </div>
   )
 }

@@ -1,3 +1,5 @@
+import { brand } from './src/config/brand.ts'
+
 const colors = {
   inherit: 'inherit',
   current: 'currentColor',
@@ -10,6 +12,7 @@ const colors = {
   ink: '#293b33',
   muted: '#666d65',
   line: '#d8d8ce',
+  ice: brand.snowfall.color,
 }
 
 /** @type {import('tailwindcss').Config} */
@@ -17,6 +20,7 @@ export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     colors,
+    snowDensity: brand.snowfall.count,
     extend: {
       fontFamily: {
         display: ['"Cormorant Garamond"', 'Georgia', 'serif'],

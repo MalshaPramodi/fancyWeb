@@ -19,6 +19,11 @@ The current design is elegant and modern: Cormorant Garamond headlines, Inter
 body text, evergreen and ivory, antique gold details and a burgundy accent.
 Section 2 of the plan defines the visual direction. Phase 3 is on hold for UI review.
 
+Site-wide canvas snowfall is configured in `src/config/brand.ts` under `snowfall`.
+Its colour and density feed Tailwind theme tokens. The shared layout mounts it once,
+behind content and controls. A header toggle remembers the visitor's choice when
+localStorage is available; hidden tabs and reduced-motion preferences pause drawing.
+
 ## Local development
 
 Use Node.js 24 (see `.node-version`) and npm. From the repository root:

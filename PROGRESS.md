@@ -99,3 +99,11 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - Replaced tiny snow dots with 18 fine line snowflakes, varied sizes and staggered slow top-to-bottom movement. Colours still come from the theme.
 - Retained the effects toggle, reduced-motion suppression and pointer-transparent overlay. Phase 3 remains on hold.
 - Verified build and lint, downward movement and flake silhouettes in Chrome at 360px and 1440px, effects toggle and reduced motion. Existing builder interactions remain functional; no overflow or browser exceptions.
+
+## Site-wide canvas snowfall
+
+- Replaced DOM snowflakes with a single reusable `Snowfall` canvas mounted once in PageShell. Content, fields, header, footer and sticky navigation sit above the pointer-transparent fixed canvas; future steps share this layout.
+- Configurable soft ice colour, mobile/desktop density, sizes, speeds, opacity and sway live in brand.ts. Tailwind colour/density tokens reference that config. Mix of dots and six-arm line flakes; capped pixel ratio and 30fps drawing budget.
+- Header snow toggle defaults on and remembers its value through guarded localStorage. Reduced-motion users receive no snow animation. Visibility changes pause/resume animation without a time jump; viewport and DPR changes resize the canvas.
+- Phase 3 remains on hold. Commit: `feat(fx): add site-wide canvas snowfall with toggle`.
+- Validation: build, lint and formatting pass. Chrome at 360px/1440px confirms one canvas, 25/60 particles, no DOM flakes or overflow, fixed positioning during scroll, correct content/navigation stacking, DPR cap and resize. Keyboard toggle persists after reload, denied storage is handled, reduced motion stops drawing, and a genuinely hidden tab pauses/resumes correctly. Cookie add and pointer drag pass under 4× CPU throttling; observed animation-frame callbacks stayed below 3ms in this run (not a physical Android-device test). Toggle dimensions stay constant; screenshots inspected and no browser exceptions reported.
