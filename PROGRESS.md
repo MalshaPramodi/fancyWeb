@@ -5,7 +5,7 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 
 ## Phases
 
-- [ ] Phase 0: Setup (in progress)
+- [x] Phase 0: Setup (complete)
 - [ ] Phase 1: Design system and layout shell
 - [ ] Phase 2: Box builder
 - [ ] Phase 3: Delivery details and gift options
@@ -20,7 +20,7 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - [x] 2. `chore: add Tailwind, ESLint, Prettier`
 - [x] 3. `docs: add README and project structure`
 - [x] 4. `ci: connect Cloudflare Pages deployment`
-- [ ] 5. `feat(theme): add Christmas design tokens and fonts`
+- [x] 5. `feat(theme): add Christmas design tokens and fonts`
 - [ ] 6. `feat(layout): add header, footer and page shell`
 - [ ] 7. `feat(fx): add snowfall and twinkling lights with reduced-motion support`
 - [ ] 8. `feat(nav): add stepper and sticky bottom bar`
@@ -59,9 +59,12 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - Commit 1: Vite React TypeScript scaffold; build and scaffold lint checked before commit.
 - Commit 2: Tailwind 3 (config-based tokens), ESLint, Prettier and strict TypeScript. TypeScript 5.9 satisfies the ESLint parser's peer dependency range. Build, lint and format check verified before commit.
 - Commits 1–3 were pushed to `main` in `MalshaPramodi/fancyWeb`.
-- Hosted deployment and live URL verification are pending the owner's link. Phase 0 is not yet complete.
+- Live setup preview: https://fancyweb.mpramodi0039.workers.dev/ — verified on 2026-11-04 (Asia/Colombo).
+- Owner-approved hosting adjustment: Cloudflare Workers static assets via the requested Wrangler configuration replaces the planned Pages hosting. The existing `fancyWeb` repository was retained at the owner's request.
 - Commit 3: documented local setup, planned folders, environment placeholder and Cloudflare connection settings; replaced the Vite demo with a neutral setup preview. Build, lint, format and HTTP smoke checks verified before commit. Browser-based 360px inspection is unavailable in this session.
 - Commit 4: added the owner's exact `wrangler.jsonc` (`fancyweb`, compatibility date `2026-11-01`, `./dist` static assets and SPA fallback), as explicitly requested. Kept the planned commit message. Build confirms output in `dist`; lint and format checks passed before commit. This configuration supports the owner's Cloudflare deployment setup; it does not prove a hosted connection.
-- Next: verify the owner's live URL and record Phase 0 completion. Phase 1 has not started.
+- Phase 0 completion checks: production build, ESLint and Prettier passed. Homepage and `/preview-check` return HTTP 200 with identical app HTML, confirming SPA fallback. Hosted JavaScript and CSS both return HTTP 200 and match the local production build exactly. Visual browser inspection remains unavailable; automatic deployment on a future push has not been independently observed.
+- All four planned Phase 0 commits are pushed to `main`. Post-deployment documentation updates will be included in the next planned commit to preserve the numbered commit sequence without rewriting published history.
+- Phase 1 underway. Commit 5: pine, holly, gold and snow tokens, display/body font stacks, chunky shadows, accessible focus styles and Google Fonts with swap and system fallbacks. Phase 0 verification notes included without an extra commit.
 - Dependency audit: 13 moderate reports trace to a minimatch denial-of-service advisory in development lint tooling; no high or critical reports. Review compatible upstream fixes during hardening. No forced major dependency overrides were applied.
 - No backend work is authorized before the Phase 4 design review.

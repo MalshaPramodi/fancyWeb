@@ -1,6 +1,14 @@
-# Cloudflare Pages setup
+# Cloudflare deployment
 
-Status: pending account connection and verified hosted deployment.
+Status: live setup deployment verified on 2026-11-04 (Asia/Colombo).
+
+URL: https://fancyweb.mpramodi0039.workers.dev/
+
+The owner selected Workers static assets via Wrangler instead of the originally
+planned Pages hosting. The homepage and `/preview-check` return HTTP 200 and the
+same app HTML. Deployed JavaScript and CSS return HTTP 200 and match the local
+production build. Build, lint and formatting checks pass. Browser visual checks
+and observation of automatic deployment on a future push remain outstanding.
 
 ## Owner-requested static asset configuration
 
@@ -8,16 +16,16 @@ The owner explicitly requested a root `wrangler.jsonc` before supplying the live
 URL. It names the deployment `fancyweb`, sets compatibility date `2026-11-01`,
 serves `./dist`, and uses `single-page-application` fallback. `npm run build`
 outputs to `dist` using Vite's default output directory. This is a Workers static
-assets configuration; adding it does not itself establish the planned Pages Git
-integration. The owner is setting up Cloudflare and will supply the hosted URL.
+assets configuration. The owner supplied the Workers URL above, and the hosted
+static build and SPA fallback have been verified.
 
 Commit 4 retains the exact planned message and contains this requested config.
-Phase 0 remains pending until the resulting live deployment is verified.
+Phase 0 is complete with the owner-approved hosting adjustment.
 
 The owner has chosen to keep `MalshaPramodi/fancyWeb`. All app files are at this
 Git repository's root; the nested local checkout path is not a deployment root.
 
-## Connect once
+## Original Pages setup (reference only)
 
 1. Sign into Cloudflare, open Workers & Pages, then Create application > Pages >
    Connect to Git.
@@ -32,12 +40,11 @@ Do not add API credentials or bank details to deployment settings. The public
 `VITE_ORDER_API_URL` remains empty through Phase 4. There are no Pages Functions
 or backend services in the current scope.
 
-## Verify automatic deployment
+## Future automatic deployment check
 
 Commit 4 uses the exact message `ci: connect Cloudflare Pages deployment` for the
-owner-requested configuration. After it is pushed to `main`, verify that Cloudflare
-builds that commit successfully and check the actual live page. Record the
-confirmed URL in PROGRESS.md and only then mark Phase 0 complete.
+owner-requested configuration and is pushed to `main`. On the next planned push,
+check that Cloudflare rebuilds automatically and serves the new version.
 
 Git integration automatically builds connected pushes. Cloudflare's build logs
 and deployment commit SHA should match the pushed commit. Never invent a live URL.

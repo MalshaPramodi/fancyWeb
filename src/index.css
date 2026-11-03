@@ -3,13 +3,38 @@
 @tailwind utilities;
 
 :root {
-  font-family: system-ui, sans-serif;
-  color: #171717;
-  background: #fff;
+  font-family: Nunito, system-ui, sans-serif;
+  color: #213b32;
+  background: #f7f0e2;
+  color-scheme: light;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  :focus-visible {
+    outline: 3px solid #a53232;
+    outline-offset: 5px;
+  }
+
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  ::selection {
+    background: #e9bf68;
+    color: #102f28;
+  }
 }
 
 body {

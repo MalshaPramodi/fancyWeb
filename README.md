@@ -6,7 +6,7 @@ See [PROGRESS.md](PROGRESS.md) for the phase and commit checklist.
 
 ## Current scope
 
-Phase 0 setup. Phases 1–4 will use mock data and clearly marked placeholder
+Phase 0 setup is complete. Phases 1–4 will use mock data and clearly marked placeholder
 images only. Backend work starts only after the owner's Phase 4 design approval.
 The agent must stop after commit 25 for review.
 
@@ -67,5 +67,5 @@ configuration, not a place to store credentials.
 Follow [docs/deployment.md](docs/deployment.md) to connect this repository.
 The owner-requested `wrangler.jsonc` serves the `dist` build as Cloudflare static
 assets with single-page-application fallback.
-Deployment remains pending until the Cloudflare connection and live URL are
-verified. A local preview does not establish the required hosted deployment.
+Live setup preview: https://fancyweb.mpramodi0039.workers.dev/ (verified).
+The owner selected Cloudflare Workers static assets instead of Pages hosting.
