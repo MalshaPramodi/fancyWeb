@@ -7,7 +7,7 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 
 - [x] Phase 0: Setup (complete)
 - [x] Phase 1: Design system and layout shell
-- [ ] Phase 2: Box builder
+- [x] Phase 2: Box builder
 - [ ] Phase 3: Delivery details and gift options
 - [ ] Phase 4: Payment, slip upload and confirmation — STOP after commit 25
 - [ ] Phase 5: Backend integration — requires design approval
@@ -32,7 +32,7 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - [x] 14. `feat(dnd): add pointer-based drag and drop with ghost element`
 - [x] 15. `feat(dnd): add tap-to-add, tap-to-remove and keyboard support`
 - [x] 16. `feat(box): add size selector, full-box feedback and surprise-me`
-- [ ] 17. `feat(receipt): add sliding receipt panel with totals`
+- [x] 17. `feat(receipt): add sliding receipt panel with totals`
 - [ ] 18. `feat(delivery): add delivery form with validation`
 - [ ] 19. `feat(delivery): add area fees, date picker and gift message`
 - [ ] 20. `feat(payment): add bank details panel with copy buttons`
@@ -79,5 +79,7 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - Commit 14: mouse/touch Pointer Events, pointer capture, drag threshold, portal ghost, cancellation, box drop detection and edge scrolling on narrow screens.
 - Commit 15: native accessible buttons for tap/Enter/Space addition and removal, drag-click deduplication, live packed count and summary connected to the store.
 - Commit 16: size selector with preserved selections, full-box status/shake, Surprise me fills remaining holes only, slot bounce and reduced-motion safeguards. Box precedes trays on phones.
+- Commit 17: sliding itemised receipt, box price, delivery and total. Labelled placeholder pricing and reduced-motion support.
+- Phase 2 checks: build, lint and store tests pass. Chrome at 360px and 1440px verifies tap add/remove, keyboard add, resize preservation, Surprise me, full-box cap, pointer drag with exactly one add, loaded images and no horizontal overflow. Fixed browser-native image dragging that cancelled Pointer Events. Effects toggle and reduced motion still pass; no browser exceptions.
 - Dependency audit: 13 moderate reports trace to a minimatch denial-of-service advisory in development lint tooling; no high or critical reports. Review compatible upstream fixes during hardening. No forced major dependency overrides were applied.
 - No backend work is authorized before the Phase 4 design review.

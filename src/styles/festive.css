@@ -106,3 +106,21 @@
     animation: none;
   }
 }
+.receipt-in {
+  animation: receipt-in 300ms ease-out both;
+}
+@keyframes receipt-in {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .receipt-in {
+    animation: none;
+  }
+}

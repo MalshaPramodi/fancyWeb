@@ -5,6 +5,7 @@ import { boxSizes, productConfig, products } from '../config/products'
 import type { ProductId } from '../config/products'
 import { boxCount } from '../store/box'
 import { useState } from 'react'
+import { Receipt } from '../components/Receipt'
 
 export function BuildBox() {
   const box = useBoxStore()
@@ -22,7 +23,7 @@ export function BuildBox() {
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
         <fieldset>
           <legend className="mb-2 text-xs font-black uppercase tracking-widest">
-            Choose your box
+            Box size · cookies
           </legend>
           <div className="flex gap-2">
             {boxSizes.map((size) => (
@@ -33,7 +34,7 @@ export function BuildBox() {
                 onClick={() => dispatchBox({ type: 'resize', size })}
                 className={`min-h-11 rounded-button border-2 border-pine px-4 text-sm font-extrabold ${box.size === size ? 'bg-pine text-snow' : 'bg-snow'}`}
               >
-                {size} cookies
+                {size}
               </button>
             ))}
           </div>
@@ -55,7 +56,7 @@ export function BuildBox() {
       <p className="mb-5 text-xs text-muted">
         A smaller box keeps as many of your selected cookies as it can.
       </p>
-      <div className="grid items-start gap-8 lg:grid-cols-[1fr_1.4fr]">
+      <div className="grid items-start gap-6 lg:grid-cols-[.9fr_1.3fr_.9fr]">
         <div className="order-2 lg:order-1">
           <CookieTray box={box} onAdd={add} />
         </div>
@@ -65,6 +66,11 @@ export function BuildBox() {
         >
           <Box box={box} />
         </div>
+        {count > 0 && (
+          <div className="order-3">
+            <Receipt />
+          </div>
+        )}
       </div>
       <p id="next-step-help" className="mt-5 text-center text-sm text-muted">
         Drag a cookie into the box, or tap to add. Tap a packed cookie to remove

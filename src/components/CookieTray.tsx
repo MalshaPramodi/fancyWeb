@@ -37,6 +37,7 @@ export function CookieTray({
               {box.cookies.filter((id) => id === product.id).length}
             </span>
             <img
+              draggable={false}
               src={product.image}
               alt={`${product.name} image placeholder`}
               width={120}

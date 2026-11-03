@@ -40,6 +40,7 @@ export function Box({ box }: { box: BoxState }) {
             >
               {product ? (
                 <img
+                  draggable={false}
                   key={`${i}-${product.id}`}
                   src={product.image}
                   alt={product.name}
