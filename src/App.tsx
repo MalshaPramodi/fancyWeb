@@ -3,8 +3,11 @@ import { brand } from './config/brand'
 import { Stepper } from './components/Stepper'
 import { BottomBar } from './components/BottomBar'
 import { BuildBox } from './steps/BuildBox'
+import { useBoxStore } from './store/useBoxStore'
+import { boxCount, boxTotal } from './store/box'
 
 function App() {
+  const box = useBoxStore()
   return (
     <PageShell>
       <section
@@ -70,7 +73,11 @@ function App() {
       <p className="mt-5 text-center text-xs text-muted">
         {brand.previewLabel}
       </p>
-      <BottomBar count={0} capacity={brand.previewBoxSize} total={null} />
+      <BottomBar
+        count={boxCount(box)}
+        capacity={box.size}
+        total={boxTotal(box)}
+      />
     </PageShell>
   )
 }

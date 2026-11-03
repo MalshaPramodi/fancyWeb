@@ -2,6 +2,7 @@ import { Box } from '../components/Box'
 import { CookieTray } from '../components/CookieTray'
 import { useBoxStore } from '../store/useBoxStore'
 import { productConfig } from '../config/products'
+import { boxCount } from '../store/box'
 
 export function BuildBox() {
   const box = useBoxStore()
@@ -15,7 +16,11 @@ export function BuildBox() {
         <Box box={box} />
       </div>
       <p id="next-step-help" className="mt-5 text-center text-sm text-muted">
-        Cookie selection and delivery navigation are coming in the next steps.
+        Drag a cookie into the box, or tap to add. Tap a packed cookie to remove
+        it. Keyboard: Tab to a cookie, then Enter or Space.
+      </p>
+      <p role="status" className="mt-2 text-center text-sm font-bold">
+        {boxCount(box)} of {box.size} cookies packed.
       </p>
     </div>
   )

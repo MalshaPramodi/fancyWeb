@@ -1,6 +1,7 @@
 import { products } from '../config/products'
 import type { BoxState } from '../store/box'
 import { boxCount } from '../store/box'
+import { dispatchBox } from '../store/useBoxStore'
 
 export function Box({ box }: { box: BoxState }) {
   return (
@@ -25,10 +26,17 @@ export function Box({ box }: { box: BoxState }) {
         {box.cookies.map((id, i) => {
           const product = products.find((p) => p.id === id)
           return (
-            <div
+            <button
+              type="button"
+              disabled={!product}
+              onClick={() => dispatchBox({ type: 'remove', index: i })}
               key={i}
               className="flex aspect-square min-w-0 items-center justify-center rounded-2xl border-2 border-dashed border-pine/25 bg-snow/70"
-              aria-label={`Slot ${i + 1}: ${product?.name ?? 'empty'}`}
+              aria-label={
+                product
+                  ? `Remove ${product.name} from slot ${i + 1}`
+                  : `Slot ${i + 1}: empty`
+              }
             >
               {product ? (
                 <img
@@ -44,7 +52,7 @@ export function Box({ box }: { box: BoxState }) {
                   +
                 </span>
               )}
-            </div>
+            </button>
           )
         })}
       </div>

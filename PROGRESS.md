@@ -30,7 +30,7 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - [x] 12. `feat(box): render gift box with slots`
 - [x] 13. `feat(trays): add cookie trays with count badges`
 - [x] 14. `feat(dnd): add pointer-based drag and drop with ghost element`
-- [ ] 15. `feat(dnd): add tap-to-add, tap-to-remove and keyboard support`
+- [x] 15. `feat(dnd): add tap-to-add, tap-to-remove and keyboard support`
 - [ ] 16. `feat(box): add size selector, full-box feedback and surprise-me`
 - [ ] 17. `feat(receipt): add sliding receipt panel with totals`
 - [ ] 18. `feat(delivery): add delivery form with validation`
@@ -77,5 +77,6 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - Commit 12: responsive gift box with numbered empty-slot labels, cookie previews and packed count, driven by the store.
 - Commit 13: six responsive cookie trays with configured image/name and live per-flavour count badges.
 - Commit 14: mouse/touch Pointer Events, pointer capture, drag threshold, portal ghost, cancellation, box drop detection and edge scrolling on narrow screens.
+- Commit 15: native accessible buttons for tap/Enter/Space addition and removal, drag-click deduplication, live packed count and summary connected to the store.
 - Dependency audit: 13 moderate reports trace to a minimatch denial-of-service advisory in development lint tooling; no high or critical reports. Review compatible upstream fixes during hardening. No forced major dependency overrides were applied.
 - No backend work is authorized before the Phase 4 design review.

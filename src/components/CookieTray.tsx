@@ -5,7 +5,7 @@ import { usePointerDrag } from '../lib/usePointerDrag'
 import { createPortal } from 'react-dom'
 
 export function CookieTray({ box }: { box: BoxState }) {
-  const { bind, ghost } = usePointerDrag((id) =>
+  const { bind, ghost, consumeDragClick } = usePointerDrag((id) =>
     dispatchBox({ type: 'add', id }),
   )
   const draggedProduct = products.find((product) => product.id === ghost?.id)
@@ -19,7 +19,11 @@ export function CookieTray({ box }: { box: BoxState }) {
           <button
             type="button"
             {...bind(product.id)}
-            aria-label={`Drag ${product.name} into your box`}
+            aria-label={`Add ${product.name} to your box`}
+            onClick={() => {
+              if (!consumeDragClick())
+                dispatchBox({ type: 'add', id: product.id })
+            }}
             key={product.id}
             className="relative touch-none select-none rounded-2xl border-2 border-pine/20 bg-snow p-2 text-center hover:border-pine"
           >
