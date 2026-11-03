@@ -28,10 +28,10 @@ export function CookieTray({
               if (!consumeDragClick()) onAdd(product.id)
             }}
             key={product.id}
-            className="relative touch-none select-none rounded-2xl border-2 border-pine/20 bg-snow p-2 text-center hover:border-pine"
+            className="relative touch-none select-none rounded-card border border-line bg-ivory p-3 text-center hover:border-gold"
           >
             <span
-              className="absolute right-2 top-2 flex size-6 items-center justify-center rounded-full bg-pine text-xs font-black text-snow"
+              className="absolute right-2 top-2 flex size-6 items-center justify-center rounded-button border border-line bg-ivory text-xs font-normal text-muted"
               aria-label={`${box.cookies.filter((id) => id === product.id).length} selected`}
             >
               {box.cookies.filter((id) => id === product.id).length}
@@ -42,9 +42,9 @@ export function CookieTray({
               alt={`${product.name} image placeholder`}
               width={120}
               height={120}
-              className="mx-auto w-24 rounded-xl"
+              className="mx-auto w-24 rounded-card"
             />
-            <p className="mt-1 text-xs font-extrabold">{product.name}</p>
+            <p className="mt-1 text-xs font-normal">{product.name}</p>
           </button>
         ))}
       </section>
@@ -55,11 +55,11 @@ export function CookieTray({
             src={draggedProduct.image}
             alt=""
             aria-hidden="true"
-            className="pointer-events-none fixed z-50 size-20 rounded-2xl opacity-90 shadow-card"
+            className="pointer-events-none fixed z-50 size-20 rounded-card opacity-90 shadow-card"
             style={{
               left: ghost.x,
               top: ghost.y,
-              transform: 'translate(-50%, -50%) rotate(-8deg)',
+              transform: 'translate(-50%, -50%)',
             }}
           />,
           document.body,

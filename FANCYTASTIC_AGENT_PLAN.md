@@ -16,22 +16,21 @@ Customers will:
 
 The site must be **production-ready**, usable by real customers, and **hosted for free**. It exists only for the Christmas season, so the Christmas look and feel is a core requirement.
 
-## 2. Look and feel (reference: sample video "Fancy_Webs.mp4")
+## 2. Look and feel: elegant and modern
 
-The reference is a "build your own box" website. Reproduce the **interaction style**, not the branding.
+The reference video "Fancy_Webs.mp4" informs the **build-your-own-box interaction**, not the visual style. Preserve all existing drag, tap, keyboard, sizing, summary and effects-toggle functionality.
 
-- One main screen: the **box sits in the centre**, with **item trays around it** (cookies on the sides, extras above or below).
-- Items are dragged into the box and **fill or stack in slots with a small bounce animation**.
-- A **receipt or summary card slides in** showing the items and the total.
-- Checkout is a **centred card or modal** with a few fields and one clear button.
-- Ending: a **closing-box animation** and a friendly confirmation message.
-- Bold, playful typography, thick outlines, chunky buttons.
+- Keep the **box in the centre**, with cookie trays alongside it on larger screens and stacked comfortably on phones. Use generous white space and a calm visual hierarchy.
+- Palette: **deep evergreen, ivory/cream, muted antique gold, with burgundy as the only accent**. All colours, including placeholder tints, borders and shadows, originate in the Tailwind theme tokens.
+- Fonts: **Cormorant Garamond** (or Playfair Display) for refined serif headlines and **Inter** (or DM Sans) for body text and buttons. Use light to regular weights, Google Fonts with fallbacks, and no festive display font.
+- Use **1px borders, subtle soft shadows and small radii**. No thick outlines, chunky buttons or candy-cane decoration.
+- Use thin line icons, a restrained **gold ribbon on the box**, and quiet, slow snowfall. Preserve the effects toggle and respect `prefers-reduced-motion` for every animation.
+- Replace every cartoon asset in `/public/placeholders/` with a clearly labelled, neutral tinted rectangle and simple outline cookie silhouette. **Keep all filenames** so real photographs can replace them later.
+- Motion is **slow and smooth**, using gentle fades or short eased transitions for filled slots and the receipt. **No bouncing or shaking**, including full-box feedback. Future box closing follows the same restrained direction. This supersedes earlier animation wording elsewhere in the plan and its historical commit messages.
+- Receipt and checkout retain a clear item summary, total and a centred card with a few fields and one clear button.
+- Copy is **short and warm, with no exclamation marks or emojis**. Keep text easy to translate into Sinhala and Tamil later.
 
-**Christmas theme**
-- Palette: deep pine green, holly red, gold, snow white.
-- Falling snow (light, with an on/off toggle), twinkling light strings, ribbon and bow on the box, candy-cane dividers.
-- Fonts: a festive display font (for example "Mountains of Christmas") plus a clean body font (for example "Nunito"), both from Google Fonts with fallbacks.
-- Friendly, simple English copy. Make it easy to add Sinhala and Tamil later.
+This is a visual revision only. Do not start Phase 3 or change ordering behaviour as part of this revision.
 
 ## 3. Tech stack (all free)
 

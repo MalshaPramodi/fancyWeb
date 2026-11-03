@@ -15,6 +15,10 @@ The agent must stop after commit 25 for review.
 
 The owner chose to retain the existing `MalshaPramodi/fancyWeb` GitHub repository.
 
+The current design is elegant and modern: Cormorant Garamond headlines, Inter
+body text, evergreen and ivory, antique gold details and a burgundy accent.
+Section 2 of the plan defines the visual direction. Phase 3 is on hold for UI review.
+
 ## Local development
 
 Use Node.js 24 (see `.node-version`) and npm. From the repository root:
@@ -53,6 +57,11 @@ docs/                 Deployment and later owner documentation
 ```
 
 Empty directories are tracked with `.gitkeep` files. No backend is implemented.
+
+Neutral SVG placeholders keep their original filenames. Their palette is generated
+from `tailwind.config.js` by `scripts/generate-placeholders.mjs` during builds.
+Replacing a placeholder with your own file without the generator marker preserves
+it on subsequent builds.
 
 ## Business content and environment
 

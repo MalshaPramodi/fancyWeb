@@ -1,6 +1,7 @@
 import { useSyncExternalStore } from 'react'
 import type { CSSProperties } from 'react'
 import '../styles/festive.css'
+import { LineIcon } from './LineIcon'
 
 const motionQuery = '(prefers-reduced-motion: reduce)'
 const subscribe = (callback: () => void) => {
@@ -40,14 +41,12 @@ export function FestiveEffects({
         </div>
         {enabled && !reducedMotion && (
           <div className="snowfall">
-            {Array.from({ length: 18 }, (_, i) => (
+            {Array.from({ length: 12 }, (_, i) => (
               <span
                 className="snowflake"
                 key={i}
                 style={{ '--i': i } as CSSProperties}
-              >
-                ✦
-              </span>
+              />
             ))}
           </div>
         )}
@@ -57,10 +56,9 @@ export function FestiveEffects({
           type="button"
           aria-pressed={enabled}
           onClick={onToggle}
-          className="min-h-11 rounded-full border border-pine/25 bg-snow px-4 text-xs font-bold text-pine"
+          className="inline-flex min-h-11 items-center gap-2 rounded-button border border-line bg-ivory px-3 text-[11px] font-normal text-muted hover:border-gold"
         >
-          <span aria-hidden="true">{enabled ? '✧' : '○'} </span>Snow & lights:{' '}
-          {enabled ? 'on' : 'off'}
+          <LineIcon name="snow" /> Snow & lights: {enabled ? 'on' : 'off'}
         </button>
       </div>
     </>

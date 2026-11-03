@@ -8,12 +8,12 @@ export function Receipt({ deliveryFee = 0 }: { deliveryFee?: number }) {
   return (
     <aside
       aria-label="Your box receipt"
-      className="receipt-in rounded-card border-2 border-pine/30 bg-snow p-5 shadow-card"
+      className="receipt-in rounded-card border border-line bg-ivory p-6 shadow-card"
     >
-      <p className="text-[10px] font-black uppercase tracking-[0.2em] text-holly">
-        A little box of joy
+      <p className="text-[10px] font-normal uppercase tracking-[0.2em] text-burgundy">
+        Your selection
       </p>
-      <h3 className="mt-1 font-display text-3xl font-bold">Your receipt</h3>
+      <h3 className="mt-2 font-display text-3xl font-normal">Box summary</h3>
       <p className="mt-1 text-xs text-muted">
         {boxCount(box)} / {box.size} cookies
       </p>
@@ -23,12 +23,12 @@ export function Receipt({ deliveryFee = 0 }: { deliveryFee?: number }) {
           return count > 0 ? (
             <li key={product.id} className="flex justify-between gap-3">
               <span>{product.name}</span>
-              <span className="font-bold">× {count}</span>
+              <span className="font-normal">× {count}</span>
             </li>
           ) : null
         })}
       </ul>
-      <dl className="space-y-2 border-t border-dashed border-pine/30 pt-4 text-sm">
+      <dl className="space-y-3 border-t border-line pt-5 text-sm">
         <div className="flex justify-between gap-3">
           <dt>{box.size}-cookie box</dt>
           <dd>{formatLkr(productConfig.prices[box.size])}</dd>
@@ -37,12 +37,12 @@ export function Receipt({ deliveryFee = 0 }: { deliveryFee?: number }) {
           <dt>Delivery</dt>
           <dd>{formatLkr(deliveryFee)}</dd>
         </div>
-        <div className="flex justify-between gap-3 border-t border-pine/20 pt-3 font-black">
+        <div className="flex justify-between gap-3 border-t border-evergreen/20 pt-3 font-normal">
           <dt>Total</dt>
           <dd>{formatLkr(boxTotal(box, deliveryFee))}</dd>
         </div>
       </dl>
-      <p className="mt-3 text-xs font-bold text-holly">
+      <p className="mt-3 text-xs font-normal text-burgundy">
         All prices are placeholders.
       </p>
     </aside>

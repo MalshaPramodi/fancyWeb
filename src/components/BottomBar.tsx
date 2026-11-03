@@ -1,3 +1,5 @@
+import { LineIcon } from './LineIcon'
+
 type BottomBarProps = {
   count: number
   capacity: number
@@ -20,11 +22,11 @@ export function BottomBar({
   return (
     <aside
       aria-label="Box summary and navigation"
-      className="fixed inset-x-0 bottom-0 z-30 border-t-2 border-pine bg-snow px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-4 shadow-card md:static md:mt-6 md:rounded-card md:border-2 md:p-5"
+      className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-ivory px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-4 shadow-card md:static md:mt-8 md:rounded-card md:border md:p-6"
     >
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
         <div className="min-w-0">
-          <p className="text-sm font-black">
+          <p className="text-sm font-normal">
             {count}/{capacity} cookies
           </p>
           <p className="mt-0.5 text-xs text-muted">
@@ -38,7 +40,7 @@ export function BottomBar({
             type="button"
             onClick={onBack}
             disabled={!canGoBack}
-            className="min-h-11 rounded-button border-2 border-pine px-3 text-sm font-extrabold disabled:opacity-40 sm:px-5"
+            className="min-h-11 rounded-button border border-line px-3 text-sm font-normal disabled:opacity-40 sm:px-5"
           >
             Back
           </button>
@@ -47,9 +49,9 @@ export function BottomBar({
             onClick={onNext}
             disabled={!canGoNext}
             aria-describedby={!canGoNext ? 'next-step-help' : undefined}
-            className="min-h-11 rounded-button border-2 border-pine bg-pine px-4 text-sm font-extrabold text-snow disabled:opacity-40 sm:px-6"
+            className="inline-flex min-h-11 items-center gap-2 rounded-button border border-evergreen bg-evergreen px-4 text-sm font-normal text-ivory disabled:opacity-40 sm:px-6"
           >
-            Next <span aria-hidden="true">→</span>
+            Next <LineIcon name="arrow" />
           </button>
         </div>
       </div>

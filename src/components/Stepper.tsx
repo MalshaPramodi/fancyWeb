@@ -12,18 +12,18 @@ export function Stepper({ currentStep }: { currentStep: number }) {
           >
             {index < steps.length - 1 && (
               <span
-                className="absolute left-[65%] right-[-35%] top-4 h-px bg-pine/20"
+                className="absolute left-[65%] right-[-35%] top-4 h-px bg-evergreen/20"
                 aria-hidden="true"
               />
             )}
             <span
               aria-hidden="true"
-              className={`relative flex size-8 items-center justify-center rounded-full border-2 border-pine text-xs font-black ${index === currentStep ? 'bg-pine text-snow' : 'bg-cream text-pine'}`}
+              className={`relative flex size-8 items-center justify-center rounded-full border border-evergreen text-xs font-normal ${index === currentStep ? 'bg-evergreen text-ivory' : 'bg-cream text-evergreen'}`}
             >
               {index + 1}
             </span>
             <span
-              className={`text-[11px] sm:text-sm ${index === currentStep ? 'font-black text-pine' : 'font-semibold text-muted'}`}
+              className={`text-[11px] sm:text-sm ${index === currentStep ? 'font-normal text-evergreen' : 'font-normal text-muted'}`}
             >
               {step}
             </span>

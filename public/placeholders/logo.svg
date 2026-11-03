@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72" role="img"><title>Logo — PLACEHOLDER</title><circle cx="36" cy="36" r="33" fill="#e9bf68" stroke="#173f35" stroke-width="3"/><text x="36" y="47" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="bold" font-size="44" fill="#173f35">f</text><text x="36" y="61" text-anchor="middle" font-family="sans-serif" font-size="6" fill="#173f35">PLACEHOLDER</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" role="img">
+  <title>Logo image placeholder</title>
+  <desc>Neutral tinted photograph placeholder with an outline cookie silhouette.</desc>
+  <!-- Generated from Tailwind theme tokens by scripts/generate-placeholders.mjs. -->
+  <rect width="200" height="200" rx="6" fill="#f3efe7"/>
+  <g fill="none" stroke="#203c34" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity=".5">
+    <circle cx="100" cy="87" r="43"/>
+    <path d="m83 70 4 3-2 5-4-3Zm29-7 4 2-2 5-4-2ZM99 87l4 3-3 4-3-3Zm-24 14 4 2-1 4-4-2Zm40 6 4-2 2 4-4 2Z"/>
+  </g>
+  <text x="100" y="163" text-anchor="middle" fill="#666d65" font-family="sans-serif" font-weight="400" font-size="8" letter-spacing="1.4">LOGO</text>
+  <text x="100" y="178" text-anchor="middle" fill="#666d65" font-family="sans-serif" font-weight="400" font-size="7" letter-spacing="1.2">IMAGE PLACEHOLDER</text>
+</svg>

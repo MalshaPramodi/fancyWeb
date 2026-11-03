@@ -10,7 +10,7 @@ export function PageShell({ children }: { children: ReactNode }) {
     <div className="min-h-svh">
       <a
         href="#main"
-        className="sr-only z-50 rounded-button bg-snow p-3 font-bold focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+        className="sr-only z-50 rounded-button bg-ivory p-3 font-normal focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
       >
         Skip to content
       </a>

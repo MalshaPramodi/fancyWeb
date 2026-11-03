@@ -2,31 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-.candy-divider {
-  background: repeating-linear-gradient(
-    135deg,
-    #a53232 0 7px,
-    #fffdf7 7px 14px
-  );
-}
-
-:root {
-  font-family: Nunito, system-ui, sans-serif;
-  color: #213b32;
-  background: #f7f0e2;
-  color-scheme: light;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 @layer base {
-  :focus-visible {
-    outline: 3px solid #a53232;
-    outline-offset: 5px;
+  :root {
+    font-family: theme('fontFamily.body');
+    font-weight: 400;
+    color: theme('colors.ink');
+    background: theme('colors.ivory');
+    color-scheme: light;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-
+  body {
+    margin: 0;
+    min-width: 320px;
+  }
+  :focus-visible {
+    outline: 2px solid theme('colors.burgundy.DEFAULT');
+    outline-offset: 4px;
+  }
   button,
   a,
   input,
@@ -34,18 +29,27 @@
   select {
     -webkit-tap-highlight-color: transparent;
   }
-
+  button,
+  a {
+    transition:
+      background-color 700ms ease,
+      border-color 700ms ease,
+      color 700ms ease;
+  }
   button:disabled {
     cursor: not-allowed;
   }
-
   ::selection {
-    background: #e9bf68;
-    color: #102f28;
+    background: theme('colors.gold.soft');
+    color: theme('colors.evergreen.dark');
   }
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }

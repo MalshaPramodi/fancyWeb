@@ -35,5 +35,5 @@ export const productConfig = {
   defaultSize: 12 as BoxSize,
   prices: { 6: 0, 9: 0, 12: 0 } satisfies Record<BoxSize, number>,
   pricesArePlaceholders: true,
-  priceNotice: 'Preview prices: LKR 0 is a placeholder, not a real offer.',
+  priceNotice: 'Preview only. All prices are placeholders.',
 }

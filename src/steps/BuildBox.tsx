@@ -6,6 +6,7 @@ import type { ProductId } from '../config/products'
 import { boxCount } from '../store/box'
 import { useState } from 'react'
 import { Receipt } from '../components/Receipt'
+import { LineIcon } from '../components/LineIcon'
 
 export function BuildBox() {
   const box = useBoxStore()
@@ -17,12 +18,12 @@ export function BuildBox() {
   }
   return (
     <div>
-      <p className="mb-6 rounded-button bg-gold/20 px-4 py-3 text-center text-xs font-bold text-gold-dark">
+      <p className="mb-8 rounded-button bg-gold-soft/50 px-4 py-3 text-center text-xs font-normal text-gold-dark">
         {productConfig.priceNotice}
       </p>
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
         <fieldset>
-          <legend className="mb-2 text-xs font-black uppercase tracking-widest">
+          <legend className="mb-2 text-xs font-normal uppercase tracking-widest">
             Box size · cookies
           </legend>
           <div className="flex gap-2">
@@ -32,7 +33,7 @@ export function BuildBox() {
                 key={size}
                 aria-pressed={box.size === size}
                 onClick={() => dispatchBox({ type: 'resize', size })}
-                className={`min-h-11 rounded-button border-2 border-pine px-4 text-sm font-extrabold ${box.size === size ? 'bg-pine text-snow' : 'bg-snow'}`}
+                className={`min-h-11 min-w-11 rounded-button border px-4 text-sm font-normal ${box.size === size ? 'border-evergreen bg-evergreen text-ivory' : 'border-line bg-ivory hover:border-gold'}`}
               >
                 {size}
               </button>
@@ -48,9 +49,9 @@ export function BuildBox() {
                 id: products[Math.floor(Math.random() * products.length)].id,
               })
           }}
-          className="min-h-11 rounded-button border-2 border-pine bg-gold px-4 text-sm font-black shadow-chunky"
+          className="inline-flex min-h-11 items-center gap-2 rounded-button border border-line bg-ivory px-4 text-sm font-normal hover:border-gold"
         >
-          Surprise me ✧
+          <LineIcon name="shuffle" /> Surprise me
         </button>
       </div>
       <p className="mb-5 text-xs text-muted">
@@ -62,7 +63,7 @@ export function BuildBox() {
         </div>
         <div
           key={fullFeedback}
-          className={`order-1 lg:order-2 ${fullFeedback > 0 ? 'box-full-shake' : ''}`}
+          className={`order-1 lg:order-2 ${fullFeedback > 0 ? 'box-full-feedback' : ''}`}
         >
           <Box box={box} />
         </div>
@@ -73,12 +74,12 @@ export function BuildBox() {
         )}
       </div>
       <p id="next-step-help" className="mt-5 text-center text-sm text-muted">
-        Drag a cookie into the box, or tap to add. Tap a packed cookie to remove
-        it. Keyboard: Tab to a cookie, then Enter or Space.
+        Drag or tap to add. Tap a packed cookie to remove it. Keyboard: Tab,
+        then Enter or Space.
       </p>
-      <p role="status" className="mt-2 text-center text-sm font-bold">
+      <p role="status" className="mt-2 text-center text-sm font-normal">
         {count === box.size
-          ? 'Box is full! Remove a cookie to make room for another.'
+          ? 'Your box is full. Remove a cookie to make room.'
           : `${count} of ${box.size} cookies packed.`}
       </p>
     </div>

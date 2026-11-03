@@ -83,3 +83,13 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - Phase 2 checks: build, lint and store tests pass. Chrome at 360px and 1440px verifies tap add/remove, keyboard add, resize preservation, Surprise me, full-box cap, pointer drag with exactly one add, loaded images and no horizontal overflow. Fixed browser-native image dragging that cancelled Pointer Events. Effects toggle and reduced motion still pass; no browser exceptions.
 - Dependency audit: 13 moderate reports trace to a minimatch denial-of-service advisory in development lint tooling; no high or critical reports. Review compatible upstream fixes during hardening. No forced major dependency overrides were applied.
 - No backend work is authorized before the Phase 4 design review.
+
+## Owner-requested design revision (after Phase 2)
+
+- Updated section 2 of the plan to the elegant modern direction. This supersedes historical bounce/shake requirements without changing the numbered feature-commit sequence.
+- Refined serif and clean sans typography (Cormorant Garamond / Inter, 300–400), centralized evergreen/ivory/cream/antique-gold/burgundy theme, 1px borders, small radii, subtle shadows and generous spacing.
+- All nine original SVG filenames now contain neutral tinted placeholders with fine cookie outlines. Build-time generation shares Tailwind colours and preserves owner-replaced files.
+- Thin line icons, gold box ribbon, slow sparse snow and smooth fades replace cartoon decoration, emojis, bouncing and shaking. Copy is shorter and uses no exclamation marks.
+- Functionality preserved. Store unit tests, build and lint pass. Chrome at 360px and 1440px verifies drag, tap, keyboard, size preservation, Surprise me, full-box limits, effects toggle, reduced motion, loaded images and no overflow. Touch tap also verified. Screenshots inspected; browser reports no exceptions and no borders thicker than 1px.
+- Commit: `style: switch to elegant modern design direction` (owner-authorized visual revision).
+- Phase 3 remains on hold pending the owner's further instructions.

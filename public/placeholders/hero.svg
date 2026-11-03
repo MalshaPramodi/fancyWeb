@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="180" height="130" viewBox="0 0 180 130" role="img"><title>Festive decoration — PLACEHOLDER</title><g fill="none" stroke="#173f35" stroke-width="2" opacity=".3"><path d="m45 10 0 50m-25-25h50m-43-18 36 36m0-36L27 53M115 55v36m-18-18h36m-31-13 26 26m0-26-26 26"/><path d="m16 104 10-4m-5-5 0 10m138-76 10-4m-5-5v10"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" role="img">
+  <title>Collection image placeholder</title>
+  <desc>Neutral tinted photograph placeholder with an outline cookie silhouette.</desc>
+  <!-- Generated from Tailwind theme tokens by scripts/generate-placeholders.mjs. -->
+  <rect width="200" height="200" rx="6" fill="#ede6d8"/>
+  <g fill="none" stroke="#203c34" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity=".5">
+    <circle cx="100" cy="87" r="43"/>
+    <path d="m83 70 4 3-2 5-4-3Zm29-7 4 2-2 5-4-2ZM99 87l4 3-3 4-3-3Zm-24 14 4 2-1 4-4-2Zm40 6 4-2 2 4-4 2Z"/>
+  </g>
+  <text x="100" y="163" text-anchor="middle" fill="#666d65" font-family="sans-serif" font-weight="400" font-size="8" letter-spacing="1.4">COLLECTION</text>
+  <text x="100" y="178" text-anchor="middle" fill="#666d65" font-family="sans-serif" font-weight="400" font-size="7" letter-spacing="1.2">IMAGE PLACEHOLDER</text>
+</svg>
