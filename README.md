@@ -65,5 +65,7 @@ configuration, not a place to store credentials.
 ## Cloudflare Pages
 
 Follow [docs/deployment.md](docs/deployment.md) to connect this repository.
+The owner-requested `wrangler.jsonc` serves the `dist` build as Cloudflare static
+assets with single-page-application fallback.
 Deployment remains pending until the Cloudflare connection and live URL are
 verified. A local preview does not establish the required hosted deployment.

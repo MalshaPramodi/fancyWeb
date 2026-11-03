@@ -2,6 +2,18 @@
 
 Status: pending account connection and verified hosted deployment.
 
+## Owner-requested static asset configuration
+
+The owner explicitly requested a root `wrangler.jsonc` before supplying the live
+URL. It names the deployment `fancyweb`, sets compatibility date `2026-11-01`,
+serves `./dist`, and uses `single-page-application` fallback. `npm run build`
+outputs to `dist` using Vite's default output directory. This is a Workers static
+assets configuration; adding it does not itself establish the planned Pages Git
+integration. The owner is setting up Cloudflare and will supply the hosted URL.
+
+Commit 4 retains the exact planned message and contains this requested config.
+Phase 0 remains pending until the resulting live deployment is verified.
+
 The owner has chosen to keep `MalshaPramodi/fancyWeb`. All app files are at this
 Git repository's root; the nested local checkout path is not a deployment root.
 
@@ -22,10 +34,10 @@ or backend services in the current scope.
 
 ## Verify automatic deployment
 
-After the first connection, commit 4 must use the exact message
-`ci: connect Cloudflare Pages deployment` and update PROGRESS.md with the confirmed
-URL. Push it to `main`, confirm Cloudflare builds that commit successfully, and
-check the live page. Only then mark Phase 0 complete.
+Commit 4 uses the exact message `ci: connect Cloudflare Pages deployment` for the
+owner-requested configuration. After it is pushed to `main`, verify that Cloudflare
+builds that commit successfully and check the actual live page. Record the
+confirmed URL in PROGRESS.md and only then mark Phase 0 complete.
 
 Git integration automatically builds connected pushes. Cloudflare's build logs
 and deployment commit SHA should match the pushed commit. Never invent a live URL.
