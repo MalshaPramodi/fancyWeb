@@ -26,7 +26,7 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - [x] 8. `feat(nav): add stepper and sticky bottom bar`
 - [x] 9. `chore(assets): add placeholder images and brand config`
 - [x] 10. `feat(config): add products, box sizes and pricing config`
-- [ ] 11. `feat(state): add box store with unit tests`
+- [x] 11. `feat(state): add box store with unit tests`
 - [ ] 12. `feat(box): render gift box with slots`
 - [ ] 13. `feat(trays): add cookie trays with count badges`
 - [ ] 14. `feat(dnd): add pointer-based drag and drop with ghost element`
@@ -73,5 +73,6 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - Phase 1 checks: each commit passed build and lint. Final build, ESLint and Prettier checks passed. Chrome inspection at 360px and 1440px confirmed no horizontal overflow, loaded images, four steps, disabled unfinished checkout, fixed mobile summary, keyboard Enter toggle and reduced-motion suppression. No browser exceptions. Mobile and desktop screenshots inspected; mobile headline spacing adjusted after inspection.
 - Next: Phase 2 (commits 10–17), mock product config and box store, then slots, trays, drag/tap/keyboard interactions and receipt. No backend implemented.
 - Commit 10: six configured placeholder flavours and images, 6/9/12 sizes, explicitly labelled LKR 0 mock prices, and shared LKR formatting. Real prices remain unknown.
+- Commit 11: single observable React box store, immutable reducer, add/remove/resize/reset and totals. Node unit tests cover overflow, holes, retained slots and all size totals with fees.
 - Dependency audit: 13 moderate reports trace to a minimatch denial-of-service advisory in development lint tooling; no high or critical reports. Review compatible upstream fixes during hardening. No forced major dependency overrides were applied.
 - No backend work is authorized before the Phase 4 design review.
