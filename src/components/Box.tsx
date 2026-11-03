@@ -40,9 +40,10 @@ export function Box({ box }: { box: BoxState }) {
             >
               {product ? (
                 <img
+                  key={`${i}-${product.id}`}
                   src={product.image}
                   alt={product.name}
-                  className="size-full rounded-2xl object-contain"
+                  className="slot-filled size-full rounded-2xl object-contain"
                 />
               ) : (
                 <span

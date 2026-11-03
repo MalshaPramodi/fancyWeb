@@ -74,3 +74,35 @@
     display: none;
   }
 }
+.slot-filled {
+  animation: slot-bounce 300ms ease-out;
+}
+.box-full-shake {
+  animation: box-shake 300ms ease-in-out;
+}
+@keyframes slot-bounce {
+  0% {
+    transform: scale(0.7);
+  }
+  70% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes box-shake {
+  25%,
+  75% {
+    transform: translateX(-4px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .slot-filled,
+  .box-full-shake {
+    animation: none;
+  }
+}
