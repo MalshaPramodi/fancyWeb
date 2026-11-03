@@ -1,5 +1,7 @@
 import { PageShell } from './components/PageShell'
 import { brand } from './config/brand'
+import { Stepper } from './components/Stepper'
+import { BottomBar } from './components/BottomBar'
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
           {brand.introduction}
         </p>
       </section>
+      <Stepper currentStep={0} />
       <section
         className="rounded-card border-2 border-pine bg-snow p-5 shadow-card sm:p-9"
         aria-labelledby="builder-title"
@@ -55,7 +58,7 @@ function App() {
             ✧
           </span>
           <p className="font-bold">{brand.builderPlaceholder}</p>
-          <p className="mt-2 max-w-xs text-sm text-muted">
+          <p id="next-step-help" className="mt-2 max-w-xs text-sm text-muted">
             {brand.builderNote}
           </p>
         </div>
@@ -63,6 +66,7 @@ function App() {
       <p className="mt-5 text-center text-xs text-muted">
         {brand.previewLabel}
       </p>
+      <BottomBar count={0} capacity={brand.previewBoxSize} total={null} />
     </PageShell>
   )
 }

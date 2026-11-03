@@ -16,4 +16,5 @@ export const brand = {
   location: 'Sri Lanka',
   contactPlaceholder: 'WhatsApp number · PLACEHOLDER',
   whatsappNumber: null as string | null,
+  previewBoxSize: 12,
 }
