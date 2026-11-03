@@ -2,6 +2,7 @@ import { PageShell } from './components/PageShell'
 import { brand } from './config/brand'
 import { Stepper } from './components/Stepper'
 import { BottomBar } from './components/BottomBar'
+import { BuildBox } from './steps/BuildBox'
 
 function App() {
   return (
@@ -64,19 +65,7 @@ function App() {
           className="candy-divider my-6 h-1.5 rounded-full"
           aria-hidden="true"
         />
-        <div className="flex min-h-64 flex-col items-center justify-center rounded-card border-2 border-dashed border-pine/25 bg-cream/60 p-6 text-center sm:min-h-80">
-          <img
-            src={brand.images.box}
-            alt="Gift box illustration — placeholder"
-            width={440}
-            height={300}
-            className="mb-4 w-full max-w-sm"
-          />
-          <p className="font-bold">{brand.builderPlaceholder}</p>
-          <p id="next-step-help" className="mt-2 max-w-xs text-sm text-muted">
-            {brand.builderNote}
-          </p>
-        </div>
+        <BuildBox />
       </section>
       <p className="mt-5 text-center text-xs text-muted">
         {brand.previewLabel}
