@@ -19,10 +19,10 @@ export const brand = {
     color: '#aec6d5',
     count: { mobile: 25, desktop: 60 },
     viewport: { mobileWidth: 640, desktopWidth: 1440, referenceHeight: 900 },
-    size: { dot: [0.9, 1.8], flake: [3, 5], large: [6, 8] },
+    size: { flake: [5, 7], large: [8, 11] },
     speed: [12, 28], // CSS pixels per second
-    opacity: [0.25, 0.55],
-    dotFraction: 0.6,
+    opacity: [0.35, 0.65],
+    lineWidth: 0.8,
     largeFraction: 0.1,
     sway: { distance: [6, 16], frequency: [0.12, 0.24] },
     frameRate: 30,

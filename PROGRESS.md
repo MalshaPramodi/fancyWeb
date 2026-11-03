@@ -107,3 +107,9 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - Header snow toggle defaults on and remembers its value through guarded localStorage. Reduced-motion users receive no snow animation. Visibility changes pause/resume animation without a time jump; viewport and DPR changes resize the canvas.
 - Phase 3 remains on hold. Commit: `feat(fx): add site-wide canvas snowfall with toggle`.
 - Validation: build, lint and formatting pass. Chrome at 360px/1440px confirms one canvas, 25/60 particles, no DOM flakes or overflow, fixed positioning during scroll, correct content/navigation stacking, DPR cap and resize. Keyboard toggle persists after reload, denied storage is handled, reduced motion stops drawing, and a genuinely hidden tab pauses/resumes correctly. Cookie add and pointer drag pass under 4× CPU throttling; observed animation-frame callbacks stayed below 3ms in this run (not a physical Android-device test). Toggle dimensions stay constant; screenshots inspected and no browser exceptions reported.
+
+## Snowflake shape adjustment (local review)
+
+- Commit: `style: make falling snowflake shapes more visible` (local; not pushed).
+- Owner requested visible snowflake shapes instead of dots. Removed dot particles and their config, increased line-flake size/opacity, and added a second pair of branches to each of the six arms. Line width is configurable in brand.ts.
+- Build and lint pass. Chrome at 360px and 1440px confirms all particles use stroked snowflake shapes with no filled dots; saved toggle, hidden-tab pause, reduced motion, resize/DPR and cookie drag checks still pass. Mobile screenshot inspected. No push performed; Phase 3 remains on hold.

@@ -10,7 +10,6 @@ type Flake = {
   radius: number
   speed: number
   opacity: number
-  dot: boolean
   phase: number
   sway: number
   frequency: number
@@ -38,32 +37,29 @@ export function Snowfall({ enabled }: { enabled: boolean }) {
     let flakes: Flake[] = []
     const silhouette = new Path2D()
     for (let arm = 0; arm < 6; arm++) {
-      const angle = (arm * Math.PI) / 3
+      const angle = Math.PI / 6 + (arm * Math.PI) / 3
       const x = Math.cos(angle)
       const y = Math.sin(angle)
       silhouette.moveTo(0, 0)
       silhouette.lineTo(x, y)
-      silhouette.moveTo(x * 0.63 - y * 0.2, y * 0.63 + x * 0.2)
-      silhouette.lineTo(x * 0.43, y * 0.43)
-      silhouette.lineTo(x * 0.63 + y * 0.2, y * 0.63 - x * 0.2)
+      for (const [base, tip, spread] of [
+        [0.43, 0.63, 0.2],
+        [0.72, 0.88, 0.13],
+      ]) {
+        silhouette.moveTo(x * tip - y * spread, y * tip + x * spread)
+        silhouette.lineTo(x * base, y * base)
+        silhouette.lineTo(x * tip + y * spread, y * tip - x * spread)
+      }
     }
 
     function makeFlake(): Flake {
-      const dot = Math.random() < settings.dotFraction
       const large = Math.random() < settings.largeFraction
       return {
         x: Math.random() * width,
         y: Math.random() * height,
-        radius: random(
-          large
-            ? settings.size.large
-            : dot
-              ? settings.size.dot
-              : settings.size.flake,
-        ),
+        radius: random(large ? settings.size.large : settings.size.flake),
         speed: random(settings.speed),
         opacity: random(settings.opacity),
-        dot,
         phase: Math.random() * Math.PI * 2,
         sway: random(settings.sway.distance),
         frequency: random(settings.sway.frequency),
@@ -125,7 +121,6 @@ export function Snowfall({ enabled }: { enabled: boolean }) {
       previousTime = time
       elapsed += delta
       context.clearRect(0, 0, width, height)
-      context.fillStyle = settings.color
       context.strokeStyle = settings.color
       context.lineCap = 'round'
       context.lineJoin = 'round'
@@ -143,18 +138,12 @@ export function Snowfall({ enabled }: { enabled: boolean }) {
           Math.min(1, flake.y / 36, (height - flake.y) / 36),
         )
         context.globalAlpha = flake.opacity * fade
-        if (flake.dot) {
-          context.beginPath()
-          context.arc(x, flake.y, flake.radius, 0, Math.PI * 2)
-          context.fill()
-        } else {
-          context.save()
-          context.translate(x, flake.y)
-          context.scale(flake.radius, flake.radius)
-          context.lineWidth = 0.65 / flake.radius
-          context.stroke(silhouette)
-          context.restore()
-        }
+        context.save()
+        context.translate(x, flake.y)
+        context.scale(flake.radius, flake.radius)
+        context.lineWidth = settings.lineWidth / flake.radius
+        context.stroke(silhouette)
+        context.restore()
       }
     }
 
