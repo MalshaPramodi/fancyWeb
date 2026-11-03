@@ -7,15 +7,29 @@ function App() {
   return (
     <PageShell>
       <section
-        className="relative py-10 text-center sm:py-14"
+        className="relative py-6 text-center sm:py-10"
         aria-labelledby="hero-title"
       >
+        <img
+          src={brand.images.hero}
+          alt=""
+          width={180}
+          height={130}
+          className="pointer-events-none absolute left-0 top-10 hidden lg:block"
+        />
+        <img
+          src={brand.images.hero}
+          alt=""
+          width={180}
+          height={130}
+          className="pointer-events-none absolute right-0 top-10 hidden -scale-x-100 lg:block"
+        />
         <p className="text-[10px] font-black uppercase tracking-[0.22em] text-holly sm:text-xs">
           {brand.seasonLabel}
         </p>
         <h1
           id="hero-title"
-          className="mt-4 font-display text-5xl font-bold leading-[1.05] tracking-tight text-pine sm:text-7xl"
+          className="mt-4 font-display text-[2.5rem] font-bold leading-[1.05] tracking-tight text-pine sm:text-7xl"
         >
           {brand.headline}
           <br />
@@ -34,7 +48,7 @@ function App() {
           <div>
             <h2
               id="builder-title"
-              className="font-display text-3xl font-bold sm:text-4xl"
+              className="font-display text-2xl font-bold sm:text-4xl"
             >
               {brand.builderTitle}
             </h2>
@@ -51,12 +65,13 @@ function App() {
           aria-hidden="true"
         />
         <div className="flex min-h-64 flex-col items-center justify-center rounded-card border-2 border-dashed border-pine/25 bg-cream/60 p-6 text-center sm:min-h-80">
-          <span
-            className="mb-4 font-display text-6xl text-holly"
-            aria-hidden="true"
-          >
-            ✧
-          </span>
+          <img
+            src={brand.images.box}
+            alt="Gift box illustration — placeholder"
+            width={440}
+            height={300}
+            className="mb-4 w-full max-w-sm"
+          />
           <p className="font-bold">{brand.builderPlaceholder}</p>
           <p id="next-step-help" className="mt-2 max-w-xs text-sm text-muted">
             {brand.builderNote}

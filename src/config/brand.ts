@@ -17,4 +17,9 @@ export const brand = {
   contactPlaceholder: 'WhatsApp number · PLACEHOLDER',
   whatsappNumber: null as string | null,
   previewBoxSize: 12,
+  images: {
+    logo: '/placeholders/logo.svg',
+    box: '/placeholders/box.svg',
+    hero: '/placeholders/hero.svg',
+  },
 }

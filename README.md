@@ -6,8 +6,11 @@ See [PROGRESS.md](PROGRESS.md) for the phase and commit checklist.
 
 ## Current scope
 
-Phase 0 setup is complete. Phases 1–4 will use mock data and clearly marked placeholder
-images only. Backend work starts only after the owner's Phase 4 design approval.
+Phases 0–1 are complete: project setup, Christmas theme, layout, effects,
+stepper, mobile summary and labelled SVG placeholders. The shell currently uses
+a mock empty box and an explicitly unavailable price; checkout is disabled.
+Phases 2–4 will use mock data and clearly marked placeholder images only.
+Backend work starts only after the owner's Phase 4 design approval.
 The agent must stop after commit 25 for review.
 
 The owner chose to retain the existing `MalshaPramodi/fancyWeb` GitHub repository.

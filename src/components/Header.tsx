@@ -9,12 +9,13 @@ export function Header() {
           className="flex items-center gap-3"
           aria-label={`${brand.name} home`}
         >
-          <span
-            aria-hidden="true"
-            className="flex size-11 items-center justify-center rounded-full border-2 border-pine bg-gold font-display text-3xl font-bold"
-          >
-            f
-          </span>
+          <img
+            src={brand.images.logo}
+            width={44}
+            height={44}
+            alt="Logo placeholder"
+            className="size-11"
+          />
           <span className="font-display text-3xl font-bold tracking-tight">
             {brand.name}
           </span>

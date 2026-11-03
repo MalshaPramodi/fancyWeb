@@ -6,7 +6,7 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 ## Phases
 
 - [x] Phase 0: Setup (complete)
-- [ ] Phase 1: Design system and layout shell
+- [x] Phase 1: Design system and layout shell
 - [ ] Phase 2: Box builder
 - [ ] Phase 3: Delivery details and gift options
 - [ ] Phase 4: Payment, slip upload and confirmation — STOP after commit 25
@@ -24,7 +24,7 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - [x] 6. `feat(layout): add header, footer and page shell`
 - [x] 7. `feat(fx): add snowfall and twinkling lights with reduced-motion support`
 - [x] 8. `feat(nav): add stepper and sticky bottom bar`
-- [ ] 9. `chore(assets): add placeholder images and brand config`
+- [x] 9. `chore(assets): add placeholder images and brand config`
 - [ ] 10. `feat(config): add products, box sizes and pricing config`
 - [ ] 11. `feat(state): add box store with unit tests`
 - [ ] 12. `feat(box): render gift box with slots`
@@ -69,5 +69,8 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - Commit 6: responsive header, central preview surface, candy-cane divider, footer and skip link. Business copy is in the initial brand config; image paths follow in commit 9. No ordering interactions are enabled yet.
 - Commit 7: lightweight CSS snowfall and light string, accessible toggle, live reduced-motion preference handling and CSS safeguard. Reduced motion suppresses snow and light animation.
 - Commit 8: four-step progress indicator, fixed mobile summary with safe-area padding, reusable Back/Next controls and mock 0/12 count. Prices are explicitly unavailable; navigation stays disabled until the box builder exists.
+- Commit 9: clearly labelled, replaceable SVG placeholders for logo, hero, ribboned box and six cookies. Brand copy, image paths, location and missing contact details live in brand.ts. No real prices, dates or contact data invented.
+- Phase 1 checks: each commit passed build and lint. Final build, ESLint and Prettier checks passed. Chrome inspection at 360px and 1440px confirmed no horizontal overflow, loaded images, four steps, disabled unfinished checkout, fixed mobile summary, keyboard Enter toggle and reduced-motion suppression. No browser exceptions. Mobile and desktop screenshots inspected; mobile headline spacing adjusted after inspection.
+- Next: Phase 2 (commits 10–17), mock product config and box store, then slots, trays, drag/tap/keyboard interactions and receipt. No backend implemented.
 - Dependency audit: 13 moderate reports trace to a minimatch denial-of-service advisory in development lint tooling; no high or critical reports. Review compatible upstream fixes during hardening. No forced major dependency overrides were applied.
 - No backend work is authorized before the Phase 4 design review.
