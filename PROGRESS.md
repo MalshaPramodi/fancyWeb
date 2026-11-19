@@ -146,7 +146,7 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 
 - Current repository baseline: Phase 4 and the packaging animation were committed together as `9963737` and are on main. Earlier local-review notes above describe their original implementation history. Owner now authorizes six extension commits and a push after each. Backend remains on hold.
 - [x] E1: `feat(config): add Danish butter cookies and mini Christmas packs products` — two configured standalone products, explicitly placeholder LKR 0 prices and quantity limits of 20, and neutral replaceable SVGs generated from theme tokens.
-- [ ] E2: `feat(state): add extras quantities and combined totals with tests`
+- [x] E2: `feat(state): add extras quantities and combined totals with tests` — shared quantity validation, selected lines, checkout readiness, totals and detached serializable payload. Empty boxes serialize as null; started boxes must be full. Extras reset with the order and changes clear the payment acknowledgement. Tests cover limits, selection types and all configured areas plus nonzero price fixtures.
 - [ ] E3: `feat(extras): add extra product cards with quantity steppers`
 - [ ] E4: `feat(receipt): show extras and grand total in receipt, bottom bar and steps`
 - [ ] E5: `feat(confirm): include extras in WhatsApp message and mocked order`

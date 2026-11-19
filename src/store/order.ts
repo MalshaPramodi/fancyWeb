@@ -1,3 +1,5 @@
+import type { BoxSize, ExtraProductId, ProductId } from '../config/products.ts'
+
 export type DeliveryDetails = {
   name: string
   phone: string
@@ -30,3 +32,24 @@ export const initialPayment = (): PaymentDetails => ({
   preparing: false,
 })
 export type OrderConfirmation = { id: string; createdAt: string }
+
+export type Extras = Partial<Record<ExtraProductId, number>>
+export type ExtraLine = {
+  id: ExtraProductId
+  name: string
+  qty: number
+  unitPrice: number
+  lineTotal: number
+}
+export type OrderTotals = {
+  boxTotal: number
+  extrasTotal: number
+  deliveryFee: number
+  grandTotal: number
+}
+export type OrderPayload = {
+  box: { size: BoxSize; cookies: ProductId[] } | null
+  extras: ExtraLine[]
+  delivery: DeliveryDetails
+  totals: OrderTotals
+}

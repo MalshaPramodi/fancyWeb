@@ -6,10 +6,13 @@ import type {
   DeliveryDetails,
   PaymentDetails,
   OrderConfirmation,
+  Extras,
 } from './order'
+import { setExtraQuantity } from './selection'
 
 let state = {
   box: initialBox(),
+  extras: {} as Extras,
   delivery: initialDelivery(),
   payment: initialPayment(),
   order: null as OrderConfirmation | null,
@@ -20,6 +23,7 @@ const subscribe = (listener: () => void) => {
   return () => listeners.delete(listener)
 }
 const snapshot = () => state.box
+const extrasSnapshot = () => state.extras
 const deliverySnapshot = () => state.delivery
 const paymentSnapshot = () => state.payment
 const confirmationSnapshot = () => state.order
@@ -36,6 +40,14 @@ export function dispatchBox(action: BoxAction) {
 }
 export const useBoxStore = () =>
   useSyncExternalStore(subscribe, snapshot, snapshot)
+export const useExtrasStore = () =>
+  useSyncExternalStore(subscribe, extrasSnapshot, extrasSnapshot)
+export function updateExtra(id: string, quantity: number) {
+  const extras = setExtraQuantity(state.extras, id, quantity)
+  if (extras === state.extras) return
+  state = { ...state, extras, payment: { ...state.payment, confirmed: false } }
+  listeners.forEach((listener) => listener())
+}
 export const useDeliveryStore = () =>
   useSyncExternalStore(subscribe, deliverySnapshot, deliverySnapshot)
 export function updateDelivery(patch: Partial<DeliveryDetails>) {
@@ -75,6 +87,7 @@ export function resetOrder() {
   if (state.payment.previewUrl) URL.revokeObjectURL(state.payment.previewUrl)
   state = {
     box: initialBox(),
+    extras: {},
     delivery: initialDelivery(),
     payment: initialPayment(),
     order: null,
