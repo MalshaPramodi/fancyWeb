@@ -9,7 +9,7 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - [x] Phase 1: Design system and layout shell
 - [x] Phase 2: Box builder
 - [x] Phase 3: Delivery details and gift options
-- [ ] Phase 4: Payment, slip upload and confirmation — STOP after commit 25
+- [x] Phase 4: Payment, slip upload and confirmation — implementation complete; owner review remains required before Phase 5
 - [ ] Phase 5: Backend integration — requires design approval
 - [ ] Phase 6: Production hardening
 - [ ] Phase 7: Launch and handover
@@ -123,7 +123,7 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - Phase 3 checks: build, lint, formatting and nine unit tests pass, including the midnight Colombo deadline boundary. Chrome at 360px/1440px verifies required errors, first-error focus, phone formats, schedule bounds, expired deadline at submit, pickup address rules, gift character cap and retained details across Back/Next. Snow canvas persists across steps, no horizontal overflow or browser exceptions, and customer details are not written to localStorage. Mobile/desktop screenshots inspected.
 - Phase 3 is complete. Next: Phase 4 payment, slip upload and mocked confirmation (commits 20–25), then the required design-review STOP. No backend work has started.
 
-## Phase 4 local review draft
+## Phase 4 local review draft (historical notes)
 
 - Owner approved pushing Phase 3; commits 18–19 are now pushed. New Phase 4 work must stay uncommitted and unpushed until local review is confirmed.
 - Planned commit 20 draft: configured placeholder bank details, exact total, working copy buttons with manual-copy fallback, and card payment marked Coming soon. No real bank details or payment requests.
@@ -136,7 +136,7 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - Phase 4 local verification: build, lint, formatting and 15 unit tests pass. Chrome at 360px/1440px verifies bank copying and fallback, file type/size/signature errors, an approximately 8.8 MB PNG compressed below 1 MB, image/PDF previews, required agreement, retained slip on Back, expired-deadline revalidation, single mock submission, confirmation and complete reset. Replaced/reset object URLs are revoked. Reduced motion and persistent snow pass; no horizontal overflow, browser exceptions, API requests or customer details in localStorage were observed.
 - Phase 4 implementation is ready for local review. Planned commits 20–25 remain unchecked because none has been created or pushed. Await owner confirmation before those commits; then stop at the Phase 4 design-review checkpoint. Backend work has not started.
 
-## Builder packaging animation (local review)
+## Builder packaging animation (historical local review)
 
 - Owner requested the same drag-and-drop box become a Christmas package when full. Cookies gently settle, the evergreen lid closes and the antique-gold ribbon and gift label appear. Open box to edit exposes the original cookies; Wrap my box closes it again. Selection and checkout remain unchanged. Reduced motion shows the finished package immediately.
 - This refinement remains uncommitted and unpushed alongside the Phase 4 draft, pending local review.
@@ -150,4 +150,8 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - [x] E3: `feat(extras): add extra product cards with quantity steppers` — separate cards below the builder, typed/clamped quantities, 44px controls and live line totals. Checkout accepts extras-only or a full box; a partial box blocks progression. Payment and running totals already use the shared combined-total helper so this commit remains usable; full receipt presentation follows in E4.
 - [x] E4: `feat(receipt): show extras and grand total in receipt, bottom bar and steps` — order receipt shows an optional gift box with cookie breakdown, each extra with quantity/unit price/line total, selected delivery fee and shared grand total. All later steps reuse it; bottom navigation shows box progress, extra count and selected extra lines. Confirmation can render a submitted payload snapshot.
 - [x] E5: `feat(confirm): include extras in WhatsApp message and mocked order` — mock submission captures a detached payload including optional box, extras, delivery and totals. Confirmation renders that snapshot. WhatsApp includes extra quantities, unit prices, line totals, delivery fee and grand total; missing business number still disables sending. Extras-only confirmation skips the gift-box animation.
-- [ ] E6: `docs: update plan with extras products and order shape` — STOP for owner review.
+- [x] E6: `docs: update plan with extras products and order shape` — updated the plan, acceptance criteria, README and owner review walkthrough. STOP for owner review.
+
+- Final extension checks: production build, ESLint and 22 unit tests pass. Chrome at 360px and 1440px verifies typed limits, plus/minus controls, 44px targets, empty-order and partial-box blocking, and extras-only progression. Six complete checkout runs cover extras-only, combined and box-only orders across pickup, other areas and Colombo; receipts/payment totals, slip requirement, confirmation snapshot, Back preservation and Order again reset pass. All selected items appear in receipt and bottom summary. Shared snow canvas persists. No horizontal overflow, browser exceptions, customer data in localStorage or API requests observed. Mobile and desktop screenshots inspected.
+- Phase 4's feature work was consolidated upstream in `9963737`; the historical planned messages 20–24 were not created as separate commits. Preview documentation planned for 25 is included in extension E6. No history was rewritten. All six new extension commits follow the owner's exact messages and are pushed individually to main.
+- Review checkpoint: https://fancyweb.mpramodi0039.workers.dev/. Await owner review; Phase 5 and backend code remain untouched.

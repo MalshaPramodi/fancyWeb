@@ -70,6 +70,8 @@ export const extrasCopy = {
   quantity: 'Quantity',
   limit: 'Maximum per order',
   selectionHelp: 'Choose at least one treat, or fill a gift box to continue.',
-  partialBox: 'Finish filling your box, or remove its cookies to order extras only.',
-  emptyBox: 'Your gift box is optional. Choose extras below, or start filling it.',
+  partialBox:
+    'Finish filling your box, or remove its cookies to order extras only.',
+  emptyBox:
+    'Your gift box is optional. Choose extras below, or start filling it.',
 }

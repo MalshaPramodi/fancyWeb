@@ -99,6 +99,7 @@ fancytastic-xmas/
 - "Box is full" message with a shake animation. A "Surprise me" button fills the remaining slots.
 - Receipt panel listing items, box price and total, sliding in as the box fills.
 - State in one store (for example Zustand or React context), with unit tests for add, remove, resize and totals.
+- Owner-requested builder refinement: when the selected box becomes full, gently settle the cookies and close a lid over that same drag-and-drop box, finishing with an evergreen Christmas package and antique-gold ribbon. Keep an accessible Open box to edit control and a way to wrap it again. Respect reduced motion and preserve selected cookies, resizing and checkout behaviour.
 
 ### Phase 3: Delivery details and gift options
 - Fields: name, WhatsApp/phone (validate Sri Lankan formats such as `07XXXXXXXX` and `+947XXXXXXXX`), address, delivery area (Colombo and suburbs, other areas, self pickup, each with its fee from config), preferred delivery date (limited to the dates and last-order date in config), optional gift message with a character limit, and a "this is a gift" toggle.
@@ -112,6 +113,35 @@ fancytastic-xmas/
 - Confirmation screen: closing-box animation, order number (for example `FT-1234`), summary, status "Payment under verification", a **"Send details on WhatsApp"** button with a prefilled message, and an "Order again" button.
 - Submission is mocked in this phase (short delay and a fake order number).
 - **STOP. Share the live preview URL with the owner for design review and adjustments.**
+
+### Frontend extension before Phase 5: standalone treats
+
+Owner-approved addition: customers can order Danish Butter Cookies and Mini
+Christmas Cookie Packs independently, with a gift box, or together. Keep all
+product details in `src/config/products.ts`: id, name, short description, unit
+price in LKR, maximum quantity and image path. Prices are clearly marked
+placeholders and the placeholder maximum is 20 per product. Neutral themed SVGs
+use `danish-butter-cookies.svg` and `mini-christmas-pack.svg` in `/public/placeholders/`.
+
+- Add a separate Add more treats section below the builder. Each card has an
+  image, description, placeholder price, accessible minus/typeable number/plus
+  controls (0 through configured maximum), and a line total for positive quantity.
+- At least one item is required. An empty box is skipped for extras-only orders;
+  a started box must be filled completely. Preserve drag, tap, keyboard and the
+  box packaging animation. Keep the layout usable at 360px without overflow.
+- Keep extras quantities in the existing order store as `{ [productId]: quantity }`.
+  Shared helpers derive selected lines and totals. Receipt, bottom navigation,
+  delivery, payment and confirmation show the selected box and each extra line.
+  Grand total is box price plus extras plus the selected delivery fee. Payment
+  uses that exact total. The bottom summary includes box progress and extra count.
+- Define the serializable order payload for later backend use:
+  `{ box: { size, cookies: [] } | null, extras: [{ id, name, qty, unitPrice,
+  lineTotal }], delivery: { ... }, totals: { boxTotal, extrasTotal, deliveryFee,
+  grandTotal } }`. Mock confirmation and the WhatsApp message include these extras.
+- Test quantity changes/limits, extras-only and combined orders, incomplete-box
+  blocking, and totals for every delivery area. Run build, lint and tests.
+- Implement the six extension commits listed in section 7, pushing each to main.
+  Share the live preview and STOP for owner review. Phase 5 remains unapproved.
 
 ### Phase 5: Backend integration (only after design approval)
 - Apps Script web app that receives the order as JSON, validates it, saves the slip to a Drive folder, appends a row to a Google Sheet (order number, date, name, phone, address, items, total, slip link, status) and emails the owner.
@@ -175,6 +205,14 @@ Use Conventional Commits. Push to `main` for the first commits, then use feature
 24. `feat(order): add mocked order submission`
 25. `docs: add preview notes for owner review` (**STOP: review checkpoint**)
 
+**Standalone treats extension (before Phase 5, owner-requested)**
+1. `feat(config): add Danish butter cookies and mini Christmas packs products`
+2. `feat(state): add extras quantities and combined totals with tests`
+3. `feat(extras): add extra product cards with quantity steppers`
+4. `feat(receipt): show extras and grand total in receipt, bottom bar and steps`
+5. `feat(confirm): include extras in WhatsApp message and mocked order`
+6. `docs: update plan with extras products and order shape` (**STOP: owner review**)
+
 **Phase 5**
 26. `feat(api): add Apps Script order endpoint and Sheet schema`
 27. `feat(api): save payment slips to Drive`
@@ -194,8 +232,8 @@ Use Conventional Commits. Push to `main` for the first commits, then use feature
 ## 8. Acceptance checklist (before launch)
 
 - [ ] A customer on a 360px phone can build a full box by dragging or tapping, with no horizontal scroll.
-- [ ] Cannot proceed unless the box is full, required fields are valid and a slip is attached.
-- [ ] Totals are correct for every box size and delivery area.
+- [ ] Cannot proceed with an empty order or incomplete started box; extras-only orders skip the empty box. Required delivery fields and slip are validated.
+- [ ] Totals are correct for every box size, selected extras quantity and delivery area, and agree with Payment, confirmation and WhatsApp.
 - [ ] A test order appears in the Sheet with the slip link, and the owner receives an email.
 - [ ] Failed submissions show a clear message and the WhatsApp fallback.
 - [ ] The last order date is enforced. All text and images are editable via config or filename swap.
@@ -204,7 +242,7 @@ Use Conventional Commits. Push to `main` for the first commits, then use feature
 ## 9. Information still needed from the owner
 
 Use placeholders until these are provided:
-- Cookie flavours and box prices
+- Cookie flavours, box prices, extra product prices/descriptions and maximum quantities
 - Delivery areas, fees and delivery dates, plus the last order date
 - Bank account details and the WhatsApp number
 - Logo and cookie photos
