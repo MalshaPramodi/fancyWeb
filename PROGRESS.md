@@ -122,3 +122,32 @@ Owner decision: retain `MalshaPramodi/fancyWeb` instead of creating a new reposi
 - Commit 19: configured area fees, example-date picker with schedule/deadline checks in Asia/Colombo, optional gift note with 200-character limit and gift toggle. Self pickup does not require an address. Shared receipt and bottom total use the selected fee, including when returning to the builder. All fees and dates are clearly marked placeholders in config and UI.
 - Phase 3 checks: build, lint, formatting and nine unit tests pass, including the midnight Colombo deadline boundary. Chrome at 360px/1440px verifies required errors, first-error focus, phone formats, schedule bounds, expired deadline at submit, pickup address rules, gift character cap and retained details across Back/Next. Snow canvas persists across steps, no horizontal overflow or browser exceptions, and customer details are not written to localStorage. Mobile/desktop screenshots inspected.
 - Phase 3 is complete. Next: Phase 4 payment, slip upload and mocked confirmation (commits 20–25), then the required design-review STOP. No backend work has started.
+
+## Phase 4 local review draft
+
+- Owner approved pushing Phase 3; commits 18–19 are now pushed. New Phase 4 work must stay uncommitted and unpushed until local review is confirmed.
+- Planned commit 20 draft: configured placeholder bank details, exact total, working copy buttons with manual-copy fallback, and card payment marked Coming soon. No real bank details or payment requests.
+- Review snapshots in ignored `.qa/phase4-review/` preserve each planned commit boundary without creating Git commits. The numbered commit checklist stays unchecked until approval and actual commits.
+- Planned commit 21 draft: JPG/PNG/PDF validation, size/signature checks, local preview, image compression to at most 1 MB and required acknowledgement. Changing the slip or order clears the acknowledgement. Object URLs are released on replacement/removal; incomplete uploads are ignored after leaving the step.
+- Planned commit 22 draft: confirmation summary, payment-under-verification status, a clearly marked demo reference, Order again control and a slow gold-ribbon box-closing animation. Global reduced-motion rules show the closed box without animation. Wiring follows in planned commit 24.
+- Planned commit 23 draft: encoded WhatsApp order details and confirmation button. Missing business number keeps the button disabled with a clear reason; no number invented and no messages sent. Pickup excludes address and non-gift orders exclude hidden gift text.
+- Planned commit 24 draft: wired the full four-step mock flow, loading state, local FT-DEMO reference, fresh box/delivery checks before confirmation and complete Order again reset. Slip and agreement are required; no request, upload, email or real order is created. Done retains the shared snowfall layout.
+- Planned commit 25 draft: owner preview walkthrough, missing-content checklist and local-versus-published status in `docs/preview-notes.md` and README.
+- Phase 4 local verification: build, lint, formatting and 15 unit tests pass. Chrome at 360px/1440px verifies bank copying and fallback, file type/size/signature errors, an approximately 8.8 MB PNG compressed below 1 MB, image/PDF previews, required agreement, retained slip on Back, expired-deadline revalidation, single mock submission, confirmation and complete reset. Replaced/reset object URLs are revoked. Reduced motion and persistent snow pass; no horizontal overflow, browser exceptions, API requests or customer details in localStorage were observed.
+- Phase 4 implementation is ready for local review. Planned commits 20–25 remain unchecked because none has been created or pushed. Await owner confirmation before those commits; then stop at the Phase 4 design-review checkpoint. Backend work has not started.
+
+## Builder packaging animation (local review)
+
+- Owner requested the same drag-and-drop box become a Christmas package when full. Cookies gently settle, the evergreen lid closes and the antique-gold ribbon and gift label appear. Open box to edit exposes the original cookies; Wrap my box closes it again. Selection and checkout remain unchanged. Reduced motion shows the finished package immediately.
+- This refinement remains uncommitted and unpushed alongside the Phase 4 draft, pending local review.
+- Verification: build, lint and formatting pass. Chrome at 360px and 1440px checks all 6/9/12-cookie sizes: closing animation, label fit, reopening, removal and refilling, reduced motion and no horizontal overflow or browser errors. Mobile screenshot inspected.
+
+## Standalone treats extension (before Phase 5)
+
+- Current repository baseline: Phase 4 and the packaging animation were committed together as `9963737` and are on main. Earlier local-review notes above describe their original implementation history. Owner now authorizes six extension commits and a push after each. Backend remains on hold.
+- [x] E1: `feat(config): add Danish butter cookies and mini Christmas packs products` — two configured standalone products, explicitly placeholder LKR 0 prices and quantity limits of 20, and neutral replaceable SVGs generated from theme tokens.
+- [ ] E2: `feat(state): add extras quantities and combined totals with tests`
+- [ ] E3: `feat(extras): add extra product cards with quantity steppers`
+- [ ] E4: `feat(receipt): show extras and grand total in receipt, bottom bar and steps`
+- [ ] E5: `feat(confirm): include extras in WhatsApp message and mocked order`
+- [ ] E6: `docs: update plan with extras products and order shape` — STOP for owner review.

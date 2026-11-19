@@ -14,6 +14,8 @@ const placeholders = [
   ['logo', 'Logo', colors.cream],
   ['box', 'Box', colors.cream],
   ['hero', 'Collection', colors.gold.soft],
+  ['danish-butter-cookies', 'Danish Butter Cookies', colors.cream],
+  ['mini-christmas-pack', 'Mini Christmas Pack', colors.evergreen.soft],
 ]
 
 for (const [name, label, background] of placeholders) {
