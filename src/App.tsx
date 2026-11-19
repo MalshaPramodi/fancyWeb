@@ -6,7 +6,6 @@ import { BuildBox } from './steps/BuildBox'
 import {
   useBoxStore,
   useExtrasStore,
-  useDeliveryStore,
   usePaymentStore,
   useConfirmationStore,
   getOrderSnapshot,
@@ -14,14 +13,13 @@ import {
   resetOrder,
   updatePayment,
 } from './store/useBoxStore'
-import { boxCount } from './store/box'
-import { canCheckout, getOrderTotals } from './store/selection'
+import { canCheckout } from './store/selection'
 import { useRef, useState } from 'react'
 import { Delivery } from './steps/Delivery'
 import { deliveryConfig } from './config/delivery'
 import { Payment } from './steps/Payment'
 import { paymentConfig } from './config/payment'
-import { getDeliveryFee, validateDelivery } from './lib/delivery'
+import { validateDelivery } from './lib/delivery'
 import { Done } from './steps/Done'
 import { submitMockOrder } from './lib/mockOrder'
 
@@ -30,7 +28,6 @@ type Step = 0 | 1 | 2 | 3
 function App() {
   const box = useBoxStore()
   const extras = useExtrasStore()
-  const delivery = useDeliveryStore()
   const payment = usePaymentStore()
   const order = useConfirmationStore()
   const [submitting, setSubmitting] = useState(false)
@@ -178,12 +175,6 @@ function App() {
       </p>
       {step < 3 && (
         <BottomBar
-          count={boxCount(box)}
-          capacity={box.size}
-          total={
-            getOrderTotals(box, extras, getDeliveryFee(delivery.areaId))
-              .grandTotal
-          }
           canGoBack={step > 0 && !submitting}
           canGoNext={step === 0 ? ready : !submitting && !payment.preparing}
           busy={submitting}
