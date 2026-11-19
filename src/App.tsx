@@ -5,6 +5,7 @@ import { BottomBar } from './components/BottomBar'
 import { BuildBox } from './steps/BuildBox'
 import {
   useBoxStore,
+  useExtrasStore,
   useDeliveryStore,
   usePaymentStore,
   useConfirmationStore,
@@ -13,7 +14,8 @@ import {
   resetOrder,
   updatePayment,
 } from './store/useBoxStore'
-import { boxCount, boxTotal } from './store/box'
+import { boxCount } from './store/box'
+import { canCheckout, getOrderTotals } from './store/selection'
 import { useRef, useState } from 'react'
 import { Delivery } from './steps/Delivery'
 import { deliveryConfig } from './config/delivery'
@@ -27,6 +29,7 @@ type Step = 0 | 1 | 2 | 3
 
 function App() {
   const box = useBoxStore()
+  const extras = useExtrasStore()
   const delivery = useDeliveryStore()
   const payment = usePaymentStore()
   const order = useConfirmationStore()
@@ -35,7 +38,7 @@ function App() {
   const [deliveryReview, setDeliveryReview] = useState(false)
   const submissionLock = useRef(false)
   const [step, setStep] = useState<Step>(0)
-  const full = boxCount(box) === box.size
+  const ready = canCheckout(box, extras)
   const navigate = (next: Step, focusId = 'builder-title') => {
     setStep(next)
     requestAnimationFrame(() => {
@@ -49,7 +52,7 @@ function App() {
   const confirm = async () => {
     if (submissionLock.current) return
     const current = getOrderSnapshot()
-    if (boxCount(current.box) !== current.box.size) {
+    if (!canCheckout(current.box, current.extras)) {
       navigate(0)
       return
     }
@@ -152,7 +155,7 @@ function App() {
           <Delivery
             showErrors={deliveryReview}
             onContinue={() => {
-              if (full) {
+              if (ready) {
                 setDeliveryReview(false)
                 navigate(2)
               }
@@ -177,9 +180,12 @@ function App() {
         <BottomBar
           count={boxCount(box)}
           capacity={box.size}
-          total={boxTotal(box, getDeliveryFee(delivery.areaId))}
+          total={
+            getOrderTotals(box, extras, getDeliveryFee(delivery.areaId))
+              .grandTotal
+          }
           canGoBack={step > 0 && !submitting}
-          canGoNext={step === 0 ? full : !submitting && !payment.preparing}
+          canGoNext={step === 0 ? ready : !submitting && !payment.preparing}
           busy={submitting}
           nextLabel={
             step === 2
@@ -192,7 +198,7 @@ function App() {
           onNext={
             step === 0
               ? () => {
-                  if (full) navigate(1)
+                  if (ready) navigate(1)
                 }
               : undefined
           }

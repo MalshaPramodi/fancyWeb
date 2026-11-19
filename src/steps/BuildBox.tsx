@@ -1,16 +1,24 @@
 import { Box } from '../components/Box'
 import { CookieTray } from '../components/CookieTray'
-import { dispatchBox, useBoxStore } from '../store/useBoxStore'
-import { boxSizes, productConfig, products } from '../config/products'
+import { dispatchBox, useBoxStore, useExtrasStore } from '../store/useBoxStore'
+import {
+  boxSizes,
+  productConfig,
+  products,
+  extrasCopy,
+} from '../config/products'
 import type { ProductId } from '../config/products'
 import { boxCount } from '../store/box'
 import { useState } from 'react'
 import { Receipt } from '../components/Receipt'
 import { LineIcon } from '../components/LineIcon'
 import { brand } from '../config/brand'
+import { ExtraProducts } from '../components/ExtraProducts'
+import { extraCount } from '../store/selection'
 
 export function BuildBox() {
   const box = useBoxStore()
+  const extras = useExtrasStore()
   const [fullFeedback, setFullFeedback] = useState(0)
   const count = boxCount(box)
   const add = (id: ProductId) => {
@@ -67,21 +75,24 @@ export function BuildBox() {
         >
           <Box box={box} />
         </div>
-        {count > 0 && (
+        {(count > 0 || extraCount(extras) > 0) && (
           <div className="order-3">
             <Receipt />
           </div>
         )}
       </div>
       <p id="next-step-help" className="mt-5 text-center text-sm text-muted">
-        Drag or tap to add. Tap a packed cookie to remove it. Keyboard: Tab,
-        then Enter or Space.
+        {extrasCopy.selectionHelp} Drag or tap to add. Tap a packed cookie to
+        remove it. Keyboard: Tab, then Enter or Space.
       </p>
       <p role="status" className="mt-2 text-center text-sm font-normal">
         {count === box.size
           ? brand.packaging.ready
-          : `${count} of ${box.size} cookies packed.`}
+          : count === 0
+            ? extrasCopy.emptyBox
+            : extrasCopy.partialBox}
       </p>
+      <ExtraProducts />
     </div>
   )
 }

@@ -2,11 +2,12 @@ import { BankDetails } from '../components/BankDetails'
 import { Receipt } from '../components/Receipt'
 import {
   useBoxStore,
+  useExtrasStore,
   useDeliveryStore,
   usePaymentStore,
   updatePayment,
 } from '../store/useBoxStore'
-import { boxTotal } from '../store/box'
+import { getOrderTotals } from '../store/selection'
 import { getDeliveryFee } from '../lib/delivery'
 import { paymentConfig } from '../config/payment'
 import { SlipUpload } from '../components/SlipUpload'
@@ -23,6 +24,7 @@ export function Payment({
   error?: string
 }) {
   const box = useBoxStore()
+  const extras = useExtrasStore()
   const delivery = useDeliveryStore()
   const payment = usePaymentStore()
   const [attempted, setAttempted] = useState(false)
@@ -38,7 +40,12 @@ export function Payment({
   return (
     <div className="grid items-start gap-10 lg:grid-cols-[1.5fr_1fr]">
       <div className="min-w-0">
-        <BankDetails total={boxTotal(box, getDeliveryFee(delivery.areaId))} />
+        <BankDetails
+          total={
+            getOrderTotals(box, extras, getDeliveryFee(delivery.areaId))
+              .grandTotal
+          }
+        />
         <form
           id="payment-form"
           noValidate

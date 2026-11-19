@@ -1,12 +1,18 @@
 import { products, productConfig } from '../config/products'
-import { useBoxStore, useDeliveryStore } from '../store/useBoxStore'
-import { boxCount, boxTotal } from '../store/box'
+import {
+  useBoxStore,
+  useDeliveryStore,
+  useExtrasStore,
+} from '../store/useBoxStore'
+import { boxCount } from '../store/box'
+import { getOrderTotals } from '../store/selection'
 import { formatLkr } from '../lib/format'
 import { getDeliveryFee } from '../lib/delivery'
 import { deliveryConfig } from '../config/delivery'
 
 export function Receipt({ deliveryFee }: { deliveryFee?: number }) {
   const box = useBoxStore()
+  const extras = useExtrasStore()
   const delivery = useDeliveryStore()
   const fee = deliveryFee ?? getDeliveryFee(delivery.areaId)
   return (
@@ -47,7 +53,7 @@ export function Receipt({ deliveryFee }: { deliveryFee?: number }) {
         </div>
         <div className="flex justify-between gap-3 border-t border-evergreen/20 pt-3 font-normal">
           <dt>Total</dt>
-          <dd>{formatLkr(boxTotal(box, fee))}</dd>
+          <dd>{formatLkr(getOrderTotals(box, extras, fee).grandTotal)}</dd>
         </div>
       </dl>
       <p className="mt-3 text-xs font-normal text-burgundy">
