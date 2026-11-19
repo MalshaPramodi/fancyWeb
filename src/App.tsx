@@ -13,7 +13,7 @@ import {
   resetOrder,
   updatePayment,
 } from './store/useBoxStore'
-import { canCheckout } from './store/selection'
+import { canCheckout, createOrderPayload } from './store/selection'
 import { useRef, useState } from 'react'
 import { Delivery } from './steps/Delivery'
 import { deliveryConfig } from './config/delivery'
@@ -70,7 +70,12 @@ function App() {
     setSubmitting(true)
     setSubmissionError('')
     try {
-      completeMockOrder(await submitMockOrder())
+      const payload = createOrderPayload(
+        current.box,
+        current.extras,
+        current.delivery,
+      )
+      completeMockOrder(await submitMockOrder(payload))
       navigate(3)
     } catch {
       setSubmissionError(paymentConfig.errors.submission)

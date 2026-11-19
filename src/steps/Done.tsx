@@ -1,11 +1,7 @@
 import { paymentConfig } from '../config/payment'
 import { ClosingBox } from '../components/ClosingBox'
 import { Receipt } from '../components/Receipt'
-import {
-  useBoxStore,
-  useDeliveryStore,
-  usePaymentStore,
-} from '../store/useBoxStore'
+import { usePaymentStore } from '../store/useBoxStore'
 import { formatDeliveryDate, getDeliveryArea } from '../lib/delivery'
 import type { OrderConfirmation } from '../store/order'
 import { buildWhatsAppLink } from '../lib/whatsapp'
@@ -17,16 +13,15 @@ export function Done({
   order: OrderConfirmation
   onOrderAgain: () => void
 }) {
-  const delivery = useDeliveryStore()
-  const box = useBoxStore()
+  const delivery = order.delivery
   const payment = usePaymentStore()
   const copy = paymentConfig.done
   const area = getDeliveryArea(delivery.areaId)
-  const whatsapp = buildWhatsAppLink(order, box, delivery)
+  const whatsapp = buildWhatsAppLink(order)
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <ClosingBox />
+        {order.box && <ClosingBox />}
         <p className="mt-3 text-[10px] uppercase tracking-widest text-muted">
           {copy.reference}
         </p>
@@ -88,7 +83,7 @@ export function Done({
             </div>
           </dl>
         </section>
-        <Receipt />
+        <Receipt order={order} />
       </div>
       <div className="space-y-3 text-center">
         <div className="flex justify-center">

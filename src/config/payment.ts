@@ -25,6 +25,7 @@ export const paymentConfig = {
     whatsappPreview: 'Preview only. This is not a real order.',
     box: 'Cookie box',
     total: 'Total',
+    deliveryFee: 'Delivery fee',
   },
   upload: {
     accept: '.jpg,.jpeg,.png,.pdf',

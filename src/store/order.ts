@@ -31,7 +31,7 @@ export const initialPayment = (): PaymentDetails => ({
   confirmed: false,
   preparing: false,
 })
-export type OrderConfirmation = { id: string; createdAt: string }
+export type OrderConfirmation = OrderPayload & { id: string; createdAt: string }
 
 export type Extras = Partial<Record<ExtraProductId, number>>
 export type ExtraLine = {
